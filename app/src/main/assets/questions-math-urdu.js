@@ -126,7 +126,15 @@
    if(label) delete math[topic];
    for(const item of items||[]){
     const qkey=item.q!==undefined?"q":"question";
-    item[qkey]=urduQuestion(item[qkey],cls,topic);
+    const englishQuestion=String(item[qkey]);
+    const translatedQuestion=urduQuestion(englishQuestion,cls,topic);
+    // Class 4 Math Topics 4 and 5: show the Urdu question first,
+    // followed by its original English wording on a separate line.
+    if(cls===4 && (topic==="Factorization" || topic==="Prime number, composite numbers identification")){
+     item[qkey]=String(translatedQuestion)+"\\nEnglish: "+englishQuestion;
+    }else{
+     item[qkey]=translatedQuestion;
+    }
     const opts=item.o||item.options||[];
     const mapped=opts.map(v=>{
      let out=String(v);
