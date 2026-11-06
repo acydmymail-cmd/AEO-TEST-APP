@@ -53,7 +53,26 @@ footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
    <p>Select a class to start learning.</p>
   </div>
  </div>
+<div id="studentPanel" class="panel">
+  <h2>👨‍🎓 Student Management</h2>
+  <p>Class ke students add karein</p>
 
+  <select id="studentClass" class="topic">
+    <option value="3">Class 3</option>
+    <option value="4">Class 4</option>
+    <option value="5">Class 5</option>
+  </select>
+
+  <input id="studentName" class="topic"
+    type="text" placeholder="Student ka naam likhein">
+
+  <button class="next" onclick="addStudent()">
+    + Add Student
+  </button>
+
+  <div id="studentList"></div>
+</div>
+ 
  <div id="content" style="display:none">
   <button class="back" onclick="goHome()">← Home</button>
   <h2 id="heading"></h2>
@@ -222,6 +241,63 @@ function goHome(){
  document.getElementById("content").style.display="none";
  document.getElementById("home").style.display="block";
 }
+let students = JSON.parse(
+  localStorage.getItem("aeo_students") || "{}"
+);
+
+function saveStudents(){
+  localStorage.setItem(
+    "aeo_students",
+    JSON.stringify(students)
+  );
+}
+
+function addStudent(){
+  let cls = document.getElementById("studentClass").value;
+  let name = document.getElementById("studentName").value.trim();
+
+  if(!name){
+    alert("Student ka naam likhein.");
+    return;
+  }
+
+  if(!students[cls]) students[cls] = [];
+
+  if(students[cls].length >= 5){
+    alert("Is class mein maximum 5 students add ho sakte hain.");
+    return;
+  }
+
+  students[cls].push({
+    id: Date.now(),
+    name: name
+  });
+
+  saveStudents();
+
+  document.getElementById("studentName").value = "";
+  showStudents();
+}
+
+function showStudents(){
+  let cls = document.getElementById("studentClass").value;
+  let list = document.getElementById("studentList");
+
+  list.innerHTML = "<h3>Class " + cls + " Students</h3>";
+
+  (students[cls] || []).forEach((student,index)=>{
+    let div = document.createElement("div");
+    div.className = "topic";
+    div.textContent = (index+1) + ". " + student.name;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById("studentClass").addEventListener(
+  "change", showStudents
+);
+
+showStudents();
 </script>
 </body>
 </html>
