@@ -155,7 +155,7 @@ function selectSubject(s){
 
  let topics = window.SLO_DATA?.[currentClass]?.[s];
 
- showPage("Class " + currentClass + " - " + s);
+ showPage("Class " + currentClass + " - " + (s === "Mathematics" ? "ریاضی" : s));
 
  let items = document.getElementById("items");
  items.innerHTML = "";
@@ -219,11 +219,11 @@ function showQuestion(){
 
  let items = document.getElementById("items");
 
- document.getElementById("heading").innerText = "Practice Test";
+ document.getElementById("heading").innerText = currentSubject === "Mathematics" ? "ریاضی کی مشق" : "Practice Test";
 
  items.innerHTML = `
  <div class="panel">
-  <p id="progress">Question ${questionIndex+1} of ${currentQuestions.length}</p>
+  <p id="progress">${currentSubject === "Mathematics" ? "سوال " : "Question "}${questionIndex+1} ${currentSubject === "Mathematics" ? "از" : "of"} ${currentQuestions.length}</p>
   <h3>${escapeHTML(q.q)}</h3>
   <div id="options"></div>
   <div id="feedback"></div>
