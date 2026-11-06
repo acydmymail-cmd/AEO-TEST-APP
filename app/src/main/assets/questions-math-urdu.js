@@ -96,7 +96,7 @@
     return x.replace("How many sides does a triangle have?","مثلث کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a square have?","مربع کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a pentagon have?","پنج ضلعی شکل کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a hexagon have?","شش ضلعی شکل کے کتنے اضلاع ہوتے ہیں؟").replace("How many right angles does a rectangle have?","مستطیل میں کتنے قائمہ زاویے ہوتے ہیں؟").replace("A circle has how many corners?","دائرے کے کتنے کونے ہوتے ہیں؟").replace("What is the name of an angle of 90 degrees?","90 درجے کے زاویے کو کیا کہتے ہیں؟").replace("An angle smaller than 90 degrees is:","90 درجے سے چھوٹا زاویہ کیا کہلاتا ہے؟").replace("How many vertices does a cube have?","مکعب کے کتنے کونے ہوتے ہیں؟").replace("Which shape has four equal sides?","کس شکل کے چاروں اضلاع برابر ہوتے ہیں؟");
    }
   }
-  if(cls===4 && (topic==="Factorization" || topic==="Prime number, composite numbers identification")) return x+" English: "+String(q);
+  if(cls===4 && (topic==="Factorization" || topic==="Prime number, composite numbers identification")) return "English: "+String(q)+"\\nاردو: "+x;
   return x;
  }
  for(const cls of [3,4,5]){
