@@ -284,13 +284,9 @@ function checkAnswer(selected){
  }
 
  let next = document.getElementById("nextBtn");
-
- next.style.display = "inline-block";
-
- next.textContent =
- questionIndex === currentQuestions.length-1
- ? "View Result"
- : "Next Question →";
+ next.style.display = "none";
+ next.textContent = questionIndex === currentQuestions.length-1 ? "View Result" : "Next Question →";
+ setTimeout(() => { if(answered) nextQuestion(); }, 1000);
 }
 
 function nextQuestion(){
@@ -597,13 +593,9 @@ function checkAssessmentAnswer(selected){
  }
 
  let next = document.getElementById("assessmentNext");
-
- next.style.display = "inline-block";
-
- next.textContent =
- assessmentIndex === 8
- ? "View Final Result"
- : "Next Question →";
+ next.style.display = "none";
+ next.textContent = assessmentIndex === 8 ? "View Final Result" : "Next Question →";
+ setTimeout(() => { if(assessmentAnswered) nextAssessmentQuestion(); }, 1000);
 }
 
 function nextAssessmentQuestion(){
