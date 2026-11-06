@@ -4,18 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AEO Test & Learning</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f2f5ff;color:#202747}
 header{background:linear-gradient(135deg,#253cbb,#7049d8);color:white;text-align:center;padding:25px 15px 30px;border-radius:0 0 28px 28px}
-.logo{width:78px;height:78px;border-radius:23px;background:white;margin:auto auto 10px;display:grid;place-items:center;font-size:42px}
+.logo{width:78px;height:78px;border-radius:23px;background:white;margin:auto auto 10px;display:grid;place-items:center;font-size:42px;box-shadow:0 5px 15px #17276b55}
 header h1{font-size:22px;margin:8px 0}
 header p{font-size:13px}
 main{max-width:550px;margin:auto;padding:18px 15px}
 h2{font-size:19px}
 .classes,.subjects{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
 button{cursor:pointer}
-.classbtn{border:0;border-radius:16px;padding:20px 4px;color:white;font-size:17px;font-weight:bold;background:linear-gradient(145deg,#4775ed,#2945bd)}
+.classbtn{border:0;border-radius:16px;padding:20px 4px;color:white;font-size:17px;font-weight:bold;background:linear-gradient(145deg,#4775ed,#2945bd);box-shadow:0 4px 10px #2945bd22}
 .panel{background:white;border-radius:19px;padding:17px;margin-top:20px;box-shadow:0 4px 15px #253cbb12}
 .subject{border:0;border-radius:15px;background:#f5f7ff;padding:15px 3px;color:#26345e;font-weight:bold;font-size:13px}
 .subject span{display:block;font-size:26px;margin-bottom:8px}
@@ -24,15 +25,23 @@ button{cursor:pointer}
 .option:disabled{opacity:1}
 .option.correct{background:#d9f8e5;border-color:#32a66b}
 .option.wrong{background:#ffe0e0;border-color:#df5555}
-.back,.next{border:0;padding:12px 17px;border-radius:11px;font-weight:bold;margin:8px 4px 8px 0}
+.back,.next,.reportbtn{border:0;padding:12px 17px;border-radius:11px;font-weight:bold;margin:8px 4px 8px 0}
 .back{background:#e6eaff;color:#263c9b}
 .next{background:#3155c9;color:white}
+.reportbtn{background:#e9e2ff;color:#5536a5}
 #feedback{font-weight:bold;margin:12px 0}
 #progress{color:#66719a;font-size:13px}
 footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
+input,select{font-family:Arial,sans-serif}
+.student-card{background:#f8f9ff;border:1px solid #e1e6fa;padding:12px;border-radius:13px;margin:10px 0}
+.student-card h3{margin:4px 0 8px}
+.small-text{font-size:12px;color:#66719a}
+.result-score{font-size:35px;color:#3155c9;font-weight:bold}
 </style>
 </head>
+
 <body>
+
 <header>
  <div class="logo">📚</div>
  <h1>AEO TEST & LEARNING</h1>
@@ -40,44 +49,50 @@ footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
 </header>
 
 <main>
+
  <div id="home">
+
   <h2>🎓 Select Your Class</h2>
+
   <div class="classes">
    <button class="classbtn" onclick="selectClass(3)">Class 3</button>
    <button class="classbtn" onclick="selectClass(4)">Class 4</button>
    <button class="classbtn" onclick="selectClass(5)">Class 5</button>
   </div>
+
   <div class="panel">
    <h2>📝 Assessment Test</h2>
    <p>Student assessment and automatic results.</p>
-   <p>Select a class to start learning.</p>
+   <p>Har student ka 9 questions ka test hoga:</p>
+   <p>English: 3 | Urdu: 3 | Mathematics: 3</p>
   </div>
- </div>
-<div id="studentPanel" class="panel">
-  <h2>👨‍🎓 Student Management</h2>
-  <p>Class ke students add karein</p>
 
-  <select id="studentClass" class="topic">
+  <div id="studentPanel" class="panel">
+   <h2>👨‍🎓 Student Management</h2>
+   <p>Class ke students add karein. Har class mein maximum 5 students.</p>
+
+   <select id="studentClass" class="topic">
     <option value="3">Class 3</option>
     <option value="4">Class 4</option>
     <option value="5">Class 5</option>
-  </select>
+   </select>
 
-  <input id="studentName" class="topic"
+   <input id="studentName" class="topic"
     type="text" placeholder="Student ka naam likhein">
 
-  <button class="next" onclick="addStudent()">
-    + Add Student
-  </button>
+   <button class="next" onclick="addStudent()">+ Add Student</button>
 
-  <div id="studentList"></div>
-</div>
- 
+   <div id="studentList"></div>
+  </div>
+
+ </div>
+
  <div id="content" style="display:none">
   <button class="back" onclick="goHome()">← Home</button>
   <h2 id="heading"></h2>
   <div id="items"></div>
  </div>
+
 </main>
 
 <footer>© AEO Test & Learning</footer>
@@ -89,124 +104,200 @@ footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
 <script src="questions-class4-5.js"></script>
 
 <script>
-let currentClass=null;
-let currentSubject=null;
-let currentQuestions=[];
-let questionIndex=0;
-let score=0;
-let answered=false;
 
-function showPage(title){
- document.getElementById("home").style.display="none";
- document.getElementById("content").style.display="block";
- document.getElementById("heading").innerText=title;
+/* BASIC APP SETTINGS */
+
+let currentClass = null;
+let currentSubject = null;
+let currentQuestions = [];
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
+function normalizeQuestion(q){
+ return {
+  q: q.question ?? q.q,
+  o: q.options ?? q.o,
+  a: q.answer ?? q.a
+ };
 }
 
-function selectClass(c){
- currentClass=c;
- showPage("Class "+c+" - Select Subject");
+function showPage(title){
+ document.getElementById("home").style.display = "none";
+ document.getElementById("content").style.display = "block";
+ document.getElementById("heading").innerText = title;
+}
 
- let items=document.getElementById("items");
- items.innerHTML=`
+function goHome(){
+ document.getElementById("content").style.display = "none";
+ document.getElementById("home").style.display = "block";
+ showStudents();
+}
+
+/* CLASS AND SUBJECT SELECTION */
+
+function selectClass(c){
+ currentClass = c;
+ showPage("Class " + c + " - Select Subject");
+
+ let items = document.getElementById("items");
+
+ items.innerHTML = `
  <div class="subjects">
- <button class="subject" onclick="selectSubject('English')"><span>📘</span>English</button>
- <button class="subject" onclick="selectSubject('Urdu')"><span>📗</span>Urdu</button>
- <button class="subject" onclick="selectSubject('Mathematics')"><span>🔢</span>Mathematics</button>
+  <button class="subject" onclick="selectSubject('English')">
+   <span>📘</span>English
+  </button>
+
+  <button class="subject" onclick="selectSubject('Urdu')">
+   <span>📗</span>Urdu
+  </button>
+
+  <button class="subject" onclick="selectSubject('Mathematics')">
+   <span>🔢</span>Mathematics
+  </button>
  </div>`;
 }
 
 function selectSubject(s){
- currentSubject=s;
- let topics=window.SLO_DATA?.[currentClass]?.[s];
- showPage("Class "+currentClass+" - "+s);
- let items=document.getElementById("items");
- items.innerHTML="";
+ currentSubject = s;
+
+ let topics = window.SLO_DATA?.[currentClass]?.[s];
+
+ showPage("Class " + currentClass + " - " + s);
+
+ let items = document.getElementById("items");
+ items.innerHTML = "";
 
  if(!topics){
-  items.innerHTML="<p class='panel'>SLO data nahi mila. Data file check karein.</p>";
+  items.innerHTML = "<p class='panel'>SLO data nahi mila. Data file check karein.</p>";
   return;
  }
 
  topics.forEach((topic,i)=>{
-  let btn=document.createElement("button");
-  btn.className="topic";
-  btn.textContent="📖 "+(i+1)+". "+topic;
-  btn.onclick=()=>openTopic(topic);
+  let btn = document.createElement("button");
+  btn.className = "topic";
+  btn.textContent = "📖 " + (i+1) + ". " + topic;
+  btn.onclick = () => openTopic(topic);
   items.appendChild(btn);
  });
 }
 
-function openTopic(topic){
- let questions=window.QUESTIONS_DATA?.[currentClass]?.[currentSubject]?.[topic];
+/* PRACTICE TEST */
 
- if(!questions || questions.length===0){
-  document.getElementById("items").innerHTML=
-  "<div class='panel'><h3>"+escapeHTML(topic)+"</h3><p>Is topic ke questions abhi add nahi huay. Jald add kiye jayenge.</p></div>";
+function openTopic(topic){
+
+ let rawQuestions =
+ window.QUESTIONS_DATA?.[currentClass]?.[currentSubject]?.[topic];
+
+ if(!rawQuestions || rawQuestions.length === 0){
+  document.getElementById("items").innerHTML =
+  "<div class='panel'><h3>" + escapeHTML(topic) +
+  "</h3><p>Is topic ke questions abhi add nahi huay.</p></div>";
   return;
  }
 
- currentQuestions=questions;
- questionIndex=0;
- score=0;
+ currentQuestions = rawQuestions
+  .map(normalizeQuestion)
+  .filter(q =>
+   q.q &&
+   Array.isArray(q.o) &&
+   Number.isInteger(q.a) &&
+   q.a >= 0 &&
+   q.a < q.o.length
+  );
+
+ if(currentQuestions.length === 0){
+  alert("Is topic ke questions ka format check karein.");
+  return;
+ }
+
+ questionIndex = 0;
+ score = 0;
+
  showQuestion();
 }
 
 function showQuestion(){
- answered=false;
- let q=currentQuestions[questionIndex];
- let items=document.getElementById("items");
- document.getElementById("heading").innerText="Practice Test";
 
- items.innerHTML=`
+ answered = false;
+
+ let q = currentQuestions[questionIndex];
+
+ let items = document.getElementById("items");
+
+ document.getElementById("heading").innerText = "Practice Test";
+
+ items.innerHTML = `
  <div class="panel">
- <p id="progress">Question ${questionIndex+1} of ${currentQuestions.length}</p>
- <h3>${escapeHTML(q.q)}</h3>
- <div id="options"></div>
- <div id="feedback"></div>
- <button class="next" id="nextBtn" style="display:none" onclick="nextQuestion()">Next Question →</button>
+  <p id="progress">Question ${questionIndex+1} of ${currentQuestions.length}</p>
+  <h3>${escapeHTML(q.q)}</h3>
+  <div id="options"></div>
+  <div id="feedback"></div>
+
+  <button class="next" id="nextBtn"
+   style="display:none" onclick="nextQuestion()">
+   Next Question →
+  </button>
  </div>`;
 
- let options=document.getElementById("options");
+ let options = document.getElementById("options");
+
  q.o.forEach((option,i)=>{
-  let btn=document.createElement("button");
-  btn.className="option";
-  btn.textContent=String.fromCharCode(65+i)+". "+option;
-  btn.onclick=()=>checkAnswer(i);
+  let btn = document.createElement("button");
+  btn.className = "option";
+  btn.textContent = String.fromCharCode(65+i) + ". " + option;
+  btn.onclick = () => checkAnswer(i);
   options.appendChild(btn);
  });
 }
 
 function checkAnswer(selected){
- if(answered)return;
- answered=true;
 
- let q=currentQuestions[questionIndex];
- let buttons=document.querySelectorAll(".option");
- let feedback=document.getElementById("feedback");
+ if(answered) return;
+
+ answered = true;
+
+ let q = currentQuestions[questionIndex];
+
+ let buttons = document.querySelectorAll("#options .option");
+ let feedback = document.getElementById("feedback");
 
  buttons.forEach((btn,i)=>{
-  btn.disabled=true;
-  if(i===q.a)btn.classList.add("correct");
-  if(i===selected && selected!==q.a)btn.classList.add("wrong");
+  btn.disabled = true;
+
+  if(i === q.a) btn.classList.add("correct");
+
+  if(i === selected && selected !== q.a){
+   btn.classList.add("wrong");
+  }
  });
 
- if(selected===q.a){
+ if(selected === q.a){
   score++;
-  feedback.textContent="✓ Correct Answer! +1 Mark";
-  feedback.style.color="#16864b";
+  feedback.textContent = "✓ Correct Answer! +1 Mark";
+  feedback.style.color = "#16864b";
  }else{
-  feedback.textContent="✗ Incorrect. Correct answer: "+q.o[q.a];
-  feedback.style.color="#d13c3c";
+  feedback.textContent =
+  "✗ Incorrect. Correct answer: " + q.o[q.a];
+
+  feedback.style.color = "#d13c3c";
  }
 
- let next=document.getElementById("nextBtn");
- next.style.display="inline-block";
- next.textContent=questionIndex===currentQuestions.length-1?"View Result":"Next Question →";
+ let next = document.getElementById("nextBtn");
+
+ next.style.display = "inline-block";
+
+ next.textContent =
+ questionIndex === currentQuestions.length-1
+ ? "View Result"
+ : "Next Question →";
 }
 
 function nextQuestion(){
+
  questionIndex++;
- if(questionIndex<currentQuestions.length){
+
+ if(questionIndex < currentQuestions.length){
   showQuestion();
  }else{
   showResult();
@@ -214,90 +305,559 @@ function nextQuestion(){
 }
 
 function showResult(){
- let total=currentQuestions.length;
- let percent=Math.round(score/total*100);
- document.getElementById("heading").innerText="Practice Result";
 
- document.getElementById("items").innerHTML=`
+ let total = currentQuestions.length;
+ let percent = Math.round(score/total*100);
+
+ document.getElementById("heading").innerText = "Practice Result";
+
+ document.getElementById("items").innerHTML = `
  <div class="panel" style="text-align:center">
- <div style="font-size:45px">🏆</div>
- <h2>Test Completed!</h2>
- <h1>${score} / ${total}</h1>
- <h3>${percent}% Marks</h3>
- <p>Class ${currentClass} | ${currentSubject}</p>
- <p>${percent>=50?"Well done! Keep it up!":"Good try! Practice again."}</p>
- <button class="next" onclick="selectSubject(currentSubject)">Try Again</button>
- <button class="back" onclick="selectClass(currentClass)">Back to Subjects</button>
+  <div style="font-size:45px">🏆</div>
+  <h2>Test Completed!</h2>
+  <div class="result-score">${score} / ${total}</div>
+  <h3>${percent}% Marks</h3>
+  <p>Class ${currentClass} | ${escapeHTML(currentSubject)}</p>
+  <p>${percent>=50?"Well done! Keep it up!":"Good try! Practice again."}</p>
+
+  <button class="next" onclick="selectSubject(currentSubject)">
+   Try Again
+  </button>
+
+  <button class="back" onclick="selectClass(currentClass)">
+   Back to Subjects
+  </button>
  </div>`;
 }
 
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,function(c){
-  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
- });
+/* STUDENT DATA */
+
+function readStudents(){
+ try{
+  return JSON.parse(localStorage.getItem("aeo_students") || "{}");
+ }catch(e){
+  return {};
+ }
 }
 
-function goHome(){
- document.getElementById("content").style.display="none";
- document.getElementById("home").style.display="block";
-}
-let students = JSON.parse(
-  localStorage.getItem("aeo_students") || "{}"
-);
+let students = readStudents();
 
 function saveStudents(){
-  localStorage.setItem(
-    "aeo_students",
-    JSON.stringify(students)
-  );
+ localStorage.setItem("aeo_students", JSON.stringify(students));
 }
 
 function addStudent(){
-  let cls = document.getElementById("studentClass").value;
-  let name = document.getElementById("studentName").value.trim();
 
-  if(!name){
-    alert("Student ka naam likhein.");
-    return;
-  }
+ let cls = document.getElementById("studentClass").value;
+ let name = document.getElementById("studentName").value.trim();
 
-  if(!students[cls]) students[cls] = [];
+ if(!name){
+  alert("Student ka naam likhein.");
+  return;
+ }
 
-  if(students[cls].length >= 5){
-    alert("Is class mein maximum 5 students add ho sakte hain.");
-    return;
-  }
+ if(!students[cls]) students[cls] = [];
 
-  students[cls].push({
-    id: Date.now(),
-    name: name
-  });
+ if(students[cls].length >= 5){
+  alert("Is class mein maximum 5 students add ho sakte hain.");
+  return;
+ }
 
-  saveStudents();
+ students[cls].push({
+  id: Date.now(),
+  name: name
+ });
 
-  document.getElementById("studentName").value = "";
-  showStudents();
+ saveStudents();
+
+ document.getElementById("studentName").value = "";
+
+ showStudents();
 }
 
 function showStudents(){
-  let cls = document.getElementById("studentClass").value;
-  let list = document.getElementById("studentList");
 
-  list.innerHTML = "<h3>Class " + cls + " Students</h3>";
+ let cls = document.getElementById("studentClass").value;
+ let list = document.getElementById("studentList");
 
-  (students[cls] || []).forEach((student,index)=>{
-    let div = document.createElement("div");
-    div.className = "topic";
-    div.textContent = (index+1) + ". " + student.name;
-    list.appendChild(div);
-  });
+ list.innerHTML = "<h3>Class " + cls + " Students</h3>";
+
+ let classStudents = students[cls] || [];
+
+ if(classStudents.length === 0){
+  list.innerHTML += "<p class='small-text'>Abhi koi student add nahi hua.</p>";
+  return;
+ }
+
+ classStudents.forEach((student,index)=>{
+
+  let div = document.createElement("div");
+  div.className = "student-card";
+
+  let name = document.createElement("h3");
+  name.textContent = (index+1) + ". " + student.name;
+
+  let assessmentBtn = document.createElement("button");
+  assessmentBtn.className = "next";
+  assessmentBtn.textContent = "📝 Start Assessment";
+  assessmentBtn.onclick = () => startAssessment(student.id);
+
+  let reportBtn = document.createElement("button");
+  reportBtn.className = "reportbtn";
+  reportBtn.textContent = "📊 View Report";
+  reportBtn.onclick = () => showStudentReport(student.id);
+
+  div.appendChild(name);
+  div.appendChild(assessmentBtn);
+  div.appendChild(reportBtn);
+
+  list.appendChild(div);
+ });
 }
 
 document.getElementById("studentClass").addEventListener(
-  "change", showStudents
+ "change", showStudents
 );
 
+/* ASSESSMENT SYSTEM */
+
+let assessmentStudent = null;
+let assessmentQuestions = [];
+let assessmentIndex = 0;
+let assessmentAnswered = false;
+
+let assessmentScores = {
+ English: 0,
+ Urdu: 0,
+ Mathematics: 0
+};
+
+function startAssessment(studentId){
+
+ let cls = document.getElementById("studentClass").value;
+
+ assessmentStudent = (students[cls] || []).find(
+  s => s.id === studentId
+ );
+
+ if(!assessmentStudent) return;
+
+ assessmentQuestions = [];
+
+ assessmentScores = {
+  English: 0,
+  Urdu: 0,
+  Mathematics: 0
+ };
+
+ ["English","Urdu","Mathematics"].forEach(subject=>{
+
+  let topics =
+  window.QUESTIONS_DATA?.[cls]?.[subject] || {};
+
+  let pool = [];
+
+  Object.values(topics).forEach(topicQuestions=>{
+
+   if(Array.isArray(topicQuestions)){
+
+    topicQuestions.forEach(raw=>{
+
+     let q = normalizeQuestion(raw);
+
+     if(
+      q.q &&
+      Array.isArray(q.o) &&
+      Number.isInteger(q.a) &&
+      q.a >= 0 &&
+      q.a < q.o.length
+     ){
+      pool.push({
+       question: q.q,
+       options: q.o,
+       answer: q.a,
+       subject: subject
+      });
+     }
+
+    });
+   }
+  });
+
+  /* Random questions */
+
+  pool.sort(() => Math.random() - 0.5);
+
+  assessmentQuestions.push(...pool.slice(0,3));
+
+ });
+
+ if(assessmentQuestions.length !== 9){
+
+  alert(
+   "Assessment ke liye har subject mein 3 valid questions zaroori hain. Question data check karein."
+  );
+
+  return;
+ }
+
+ assessmentIndex = 0;
+
+ showPage("Student Assessment");
+
+ showAssessmentQuestion();
+}
+
+function showAssessmentQuestion(){
+
+ assessmentAnswered = false;
+
+ let q = assessmentQuestions[assessmentIndex];
+
+ document.getElementById("heading").innerText =
+ "Assessment - " + assessmentStudent.name;
+
+ let items = document.getElementById("items");
+
+ items.innerHTML = `
+ <div class="panel">
+  <p id="progress">Question ${assessmentIndex+1} of 9</p>
+
+  <h3>${escapeHTML(q.subject)}</h3>
+
+  <h3>${escapeHTML(q.question)}</h3>
+
+  <div id="assessmentOptions"></div>
+
+  <p id="assessmentFeedback"></p>
+
+  <button class="next" id="assessmentNext"
+   style="display:none" onclick="nextAssessmentQuestion()">
+   Next Question →
+  </button>
+ </div>`;
+
+ q.options.forEach((option,i)=>{
+
+  let btn = document.createElement("button");
+
+  btn.className = "option";
+
+  btn.textContent = String.fromCharCode(65+i) + ". " + option;
+
+  btn.onclick = () => checkAssessmentAnswer(i);
+
+  document.getElementById("assessmentOptions").appendChild(btn);
+
+ });
+}
+
+function checkAssessmentAnswer(selected){
+
+ if(assessmentAnswered) return;
+
+ assessmentAnswered = true;
+
+ let q = assessmentQuestions[assessmentIndex];
+
+ let buttons = document.querySelectorAll(
+  "#assessmentOptions .option"
+ );
+
+ buttons.forEach((btn,i)=>{
+
+  btn.disabled = true;
+
+  if(i === q.answer){
+   btn.classList.add("correct");
+  }
+
+  if(i === selected && selected !== q.answer){
+   btn.classList.add("wrong");
+  }
+
+ });
+
+ let feedback = document.getElementById("assessmentFeedback");
+
+ if(selected === q.answer){
+
+  assessmentScores[q.subject]++;
+
+  feedback.textContent = "✓ Correct Answer! +1 Mark";
+  feedback.style.color = "#16864b";
+
+ }else{
+
+  feedback.textContent =
+  "Incorrect. Correct answer: " + q.options[q.answer];
+
+  feedback.style.color = "#d13c3c";
+
+ }
+
+ let next = document.getElementById("assessmentNext");
+
+ next.style.display = "inline-block";
+
+ next.textContent =
+ assessmentIndex === 8
+ ? "View Final Result"
+ : "Next Question →";
+}
+
+function nextAssessmentQuestion(){
+
+ assessmentIndex++;
+
+ if(assessmentIndex < 9){
+  showAssessmentQuestion();
+ }else{
+  showAssessmentResult();
+ }
+}
+
+/* DATE AND HISTORY */
+
+function getLocalDate(){
+
+ let d = new Date();
+
+ let year = d.getFullYear();
+ let month = String(d.getMonth()+1).padStart(2,"0");
+ let day = String(d.getDate()).padStart(2,"0");
+
+ return year + "-" + month + "-" + day;
+}
+
+function getLocalMonth(){
+ return getLocalDate().slice(0,7);
+}
+
+function readHistory(){
+
+ try{
+  return JSON.parse(
+   localStorage.getItem("aeo_assessment_history") || "[]"
+  );
+ }catch(e){
+  return [];
+ }
+}
+
+function saveHistory(history){
+
+ localStorage.setItem(
+  "aeo_assessment_history",
+  JSON.stringify(history)
+ );
+}
+
+function showAssessmentResult(){
+
+ let total =
+ assessmentScores.English +
+ assessmentScores.Urdu +
+ assessmentScores.Mathematics;
+
+ let record = {
+
+  studentId: assessmentStudent.id,
+  studentName: assessmentStudent.name,
+  class: document.getElementById("studentClass").value,
+
+  date: getLocalDate(),
+  month: getLocalMonth(),
+
+  English: assessmentScores.English,
+  Urdu: assessmentScores.Urdu,
+  Mathematics: assessmentScores.Mathematics,
+
+  total: total
+ };
+
+ let history = readHistory();
+
+ history.push(record);
+
+ saveHistory(history);
+
+ document.getElementById("heading").innerText =
+ "Assessment Result";
+
+ document.getElementById("items").innerHTML = `
+ <div class="panel" style="text-align:center">
+
+  <div style="font-size:45px">🏆</div>
+
+  <h2>${escapeHTML(assessmentStudent.name)}</h2>
+
+  <h3>Class ${record.class}</h3>
+
+  <p>English: ${record.English} / 3</p>
+  <p>Urdu: ${record.Urdu} / 3</p>
+  <p>Mathematics: ${record.Mathematics} / 3</p>
+
+  <div class="result-score">${total} / 9</div>
+
+  <h3>${Math.round(total/9*100)}%</h3>
+
+  <p>Assessment saved successfully.</p>
+
+  <button class="next" onclick="goHome()">Home</button>
+
+  <button class="reportbtn"
+   onclick="showStudentReport(${assessmentStudent.id})">
+   View Student Report
+  </button>
+
+ </div>`;
+}
+
+/* STUDENT-WISE REPORT */
+
+function showStudentReport(studentId){
+
+ let cls = document.getElementById("studentClass").value;
+
+ let student = (students[cls] || []).find(
+  s => s.id === studentId
+ );
+
+ if(!student) return;
+
+ let history = readHistory().filter(
+  r => r.studentId === studentId
+ );
+
+ showPage("Student Report");
+
+ let items = document.getElementById("items");
+
+ if(history.length === 0){
+
+  items.innerHTML = `
+  <div class="panel">
+   <h3>${escapeHTML(student.name)}</h3>
+   <p>Abhi is student ka assessment record nahi hai.</p>
+  </div>`;
+
+  return;
+ }
+
+ history.sort((a,b)=>b.date.localeCompare(a.date));
+
+ let html = `
+ <div class="panel">
+  <h2>📊 ${escapeHTML(student.name)}</h2>
+  <p>Class ${cls}</p>
+  <h3>Total Assessments: ${history.length}</h3>
+ </div>`;
+
+ let months = {};
+
+ history.forEach(record=>{
+
+  let month = record.month || record.date.slice(0,7);
+
+  if(!months[month]) months[month] = [];
+
+  months[month].push(record);
+
+ });
+
+ Object.keys(months).sort().reverse().forEach(month=>{
+
+  html += `
+  <div class="panel">
+   <h3>📅 Month: ${escapeHTML(month)}</h3>`;
+
+  months[month].forEach(record=>{
+
+   html += `
+   <div class="student-card">
+
+    <p><b>Date:</b> ${escapeHTML(record.date)}</p>
+
+    <p>English: ${record.English} / 3</p>
+    <p>Urdu: ${record.Urdu} / 3</p>
+    <p>Mathematics: ${record.Mathematics} / 3</p>
+
+    <h3>Total: ${record.total} / 9</h3>
+
+    <p>${Math.round(record.total/9*100)}%</p>
+
+   </div>`;
+
+  });
+
+  html += "</div>";
+
+ });
+
+ items.innerHTML = html;
+}
+
+/* BACKUP EXPORT */
+
+function exportBackup(){
+
+ let backup = {
+
+  app: "AEO Test & Learning",
+  backupDate: getLocalDate(),
+
+  students: students,
+
+  assessmentHistory: readHistory()
+
+ };
+
+ let data = JSON.stringify(backup,null,2);
+
+ let blob = new Blob(
+  [data],
+  {type:"application/json"}
+ );
+
+ let url = URL.createObjectURL(blob);
+
+ let link = document.createElement("a");
+
+ link.href = url;
+ link.download = "AEO-Backup-" + getLocalDate() + ".json";
+
+ document.body.appendChild(link);
+
+ link.click();
+
+ link.remove();
+
+ URL.revokeObjectURL(url);
+}
+
+/* SAFE TEXT DISPLAY */
+
+function escapeHTML(value){
+
+ return String(value).replace(/[&<>"']/g,function(c){
+
+  return {
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#39;"
+  }[c];
+
+ });
+}
+
+/* INITIAL LOAD */
+
 showStudents();
+
 </script>
+
 </body>
 </html>
