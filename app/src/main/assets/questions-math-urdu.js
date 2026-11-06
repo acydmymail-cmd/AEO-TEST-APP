@@ -101,7 +101,7 @@
    if(x.startsWith("Factors of ")) ur=x.replace("Factors of ","").replace(" are:"," کے عوامل کون سے ہیں؟");
    else if(x.startsWith("Which is a factor of ")) ur=x.replace("Which is a factor of ","").replace("?"," کا عامل کون سا ہے؟");
    else if(x.startsWith("Which number is a factor of ")) ur=x.replace("Which number is a factor of ","").replace("?"," کا عامل کون سا ہے؟");
-   return String(q)+"\\nاردو: "+ur;
+   return String(q)+"\nاردو: "+ur;
   }
   if(cls===4 && topic==="Prime number, composite numbers identification"){
    const primeMap={
@@ -113,7 +113,7 @@
    "How many factors does 7 have?":"7 کے کتنے عوامل ہوتے ہیں؟",
    "Which is the only even prime number?":"واحد جفت اولی عدد کون سا ہے؟"
    };
-   return String(q)+"\\nاردو: "+(primeMap[x]||x);
+   return String(q)+"\nاردو: "+(primeMap[x]||x);
   }
   return x;
  }
