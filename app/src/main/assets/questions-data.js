@@ -1,108 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AEO Test & Learning</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f2f5ff;color:#202747}
-header{background:linear-gradient(135deg,#253cbb,#7049d8);color:white;text-align:center;padding:25px 15px 30px;border-radius:0 0 28px 28px}
-.logo{width:78px;height:78px;border-radius:23px;background:white;margin:auto auto 10px;display:grid;place-items:center;font-size:42px;box-shadow:0 5px 15px #172b8060}
-header h1{font-size:22px;margin:8px 0}
-header p{font-size:13px;margin:5px}
-main{max-width:550px;margin:auto;padding:18px 15px}
-h2{font-size:19px}
-.classes,.subjects{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-button{cursor:pointer}
-.classbtn{border:0;border-radius:16px;padding:20px 4px;color:white;font-size:17px;font-weight:bold;background:linear-gradient(145deg,#4775ed,#2945bd);box-shadow:0 4px 12px #253cbb30}
-.panel{background:white;border-radius:19px;padding:17px;margin-top:20px;box-shadow:0 4px 15px #253cbb12}
-.subject{border:0;border-radius:15px;background:#f5f7ff;padding:15px 3px;color:#26345e;font-weight:bold;font-size:13px}
-.subject span{display:block;font-size:26px;margin-bottom:8px}
-.topic{width:100%;text-align:left;border:1px solid #e1e6fa;background:#f8f9ff;padding:14px;margin:6px 0;border-radius:12px;color:#26345e;font-size:14px}
-.topic:active,.classbtn:active{transform:scale(.98)}
-.back{border:0;background:#e6eaff;color:#263c9b;padding:10px 16px;border-radius:10px;font-weight:bold}
-#content{margin-top:15px}
-#status{background:#e8edff;padding:13px;border-radius:12px;font-size:14px}
-footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
-[dir=rtl]{text-align:right}
-</style>
-</head>
-<body>
-<header>
- <div class="logo">📚</div>
- <h1>AEO TEST & LEARNING</h1>
- <p>Learn • Practice • Achieve</p>
-</header>
-
-<main>
- <div id="home">
-  <h2>🎓 Select Your Class</h2>
-  <div class="classes">
-   <button class="classbtn" onclick="selectClass(3)">Class 3</button>
-   <button class="classbtn" onclick="selectClass(4)">Class 4</button>
-   <button class="classbtn" onclick="selectClass(5)">Class 5</button>
-  </div>
-  <div class="panel">
-   <h2>📝 Assessment Test</h2>
-   <p>Student assessment and automatic results.</p>
-   <div id="testInfo">Select a class to start.</div>
-  </div>
- </div>
-
- <div id="content" style="display:none">
-  <button class="back" onclick="goHome()">← Home</button>
-  <h2 id="heading"></h2>
-  <div id="items"></div>
- </div>
-</main>
-
-<footer>© AEO Test & Learning</footer>
-
-<script src="slo-data.js"></script>
-<script>
-let currentClass=null;
-
-function selectClass(c){
- currentClass=c;
- document.getElementById("home").style.display="none";
- document.getElementById("content").style.display="block";
- document.getElementById("heading").innerText="Class "+c+" - Select Subject";
- let items=document.getElementById("items");
- items.innerHTML=`
- <div class="subjects">
- <button class="subject" onclick="selectSubject('English')"><span>📘</span>English</button>
- <button class="subject" onclick="selectSubject('Urdu')"><span>📗</span>Urdu</button>
- <button class="subject" onclick="selectSubject('Mathematics')"><span>🔢</span>Mathematics</button>
- </div>`;
-}
-
-function selectSubject(s){
- let topics=window.SLO_DATA && window.SLO_DATA[currentClass] && window.SLO_DATA[currentClass][s];
- document.getElementById("heading").innerText="Class "+currentClass+" - "+s;
- let items=document.getElementById("items");
- if(!topics){
-  items.innerHTML='<p id="status">SLO data load nahi hua. File location check karein.</p>';
-  return;
- }
- items.innerHTML=topics.map((t,i)=>
- `<button class="topic" onclick="openTopic(${i},'${s}')">📖 ${i+1}. ${t}</button>`
- ).join("");
-}
-
-function openTopic(i,s){
- let topics=window.SLO_DATA[currentClass][s];
- document.getElementById("heading").innerText=topics[i];
- document.getElementById("items").innerHTML=
- `<div class="panel"><h3>📚 ${topics[i]}</h3>
- <p>Practice questions for this SLO will be added in the next step.</p>
- <p id="status">Class ${currentClass} | ${s}</p></div>`;
-}
-
-function goHome(){
- document.getElementById("content").style.display="none";
- document.getElementById("home").style.display="block";
-}
-</script>
-</body>
-</html>
+window.QUESTIONS_DATA=window.QUESTIONS_DATA||{};window.QUESTIONS_DATA[3]=window.QUESTIONS_DATA[3]||{};window.QUESTIONS_DATA[3].English={
+"Comprehension":[
+{question:"Passage: Sara wakes up early. She waters the plants in her garden. A little bird sits on a tree. Sara puts some water for the bird.\nQuestion: What does Sara do in her garden?",options:["Sara waters the plants in her garden.","Sara plays football in her garden.","Sara picks apples from a tree.","Sara paints the garden wall."],answer:0},
+{question:"Passage: Ahmed has a red school bag. He keeps his books and pencils in it. He goes to school with his friend Bilal.\nQuestion: What does Ahmed keep in his school bag?",options:["Ahmed keeps his books and pencils in his school bag.","Ahmed keeps toys and shoes in his bag.","Ahmed keeps fruits in his school bag.","Ahmed keeps a bird in his bag."],answer:0},
+{question:"Passage: The sun is bright today. Children are playing in the park. A boy is flying a kite. His sister is reading a book under a tree.\nQuestion: What is the boy doing?",options:["The boy is flying a kite in the park.","The boy is reading under a tree.","The boy is watering flowers.","The boy is riding a bicycle."],answer:0},
+{question:"Passage: Mina loves animals. She has a small cat named Coco. Mina gives Coco milk every morning. Coco sleeps in a soft basket.\nQuestion: How does Mina care for Coco?",options:["Mina gives Coco milk every morning.","Mina takes Coco to the market.","Mina makes Coco fly.","Mina gives Coco a school bag."],answer:0},
+{question:"Passage: Our school has a clean library. Many storybooks are on the shelves. Students read quietly there. The librarian helps them find books.\nQuestion: What does the librarian help students do?",options:["The librarian helps students find books.","The librarian helps students play games.","The librarian cooks lunch.","The librarian teaches swimming."],answer:0},
+{question:"Passage: It rained last night. The ground is wet this morning. Ali wears his raincoat and carries an umbrella. He walks carefully to school.\nQuestion: Why does Ali carry an umbrella?",options:["Ali carries an umbrella because it rained last night.","Ali carries it to play cricket.","Ali carries it because it is sunny.","Ali carries it to keep his books."],answer:0},
+{question:"Passage: A farmer works in the field. He grows wheat and vegetables. He waters the crops and removes weeds. His hard work gives us food.\nQuestion: What does the farmer grow?",options:["The farmer grows wheat and vegetables.","The farmer grows toys and clothes.","The farmer grows books and pencils.","The farmer grows cars and buses."],answer:0},
+{question:"Passage: Hina and her brother clean their room on Sunday. They put books on the shelf. They fold their clothes and sweep the floor. Their room looks neat.\nQuestion: How do they make their room neat?",options:["They arrange books, fold clothes, and sweep the floor.","They throw books everywhere.","They paint pictures on the floor.","They leave the room dirty."],answer:0},
+{question:"Passage: The school bell rings at eight o'clock. Students stand in a line for assembly. They say a prayer and sing the national anthem. Then they go to their classrooms.\nQuestion: What do students do before going to class?",options:["They attend assembly, say a prayer, and sing the national anthem.","They go home and sleep.","They eat dinner in class.","They play in the market."],answer:0},
+{question:"Passage: Usman planted a mango seed. He put it in soil and watered it daily. After some weeks, a small plant appeared. Usman was happy to see it grow.\nQuestion: What helped the seed grow?",options:["Usman planted it in soil and watered it daily.","Usman kept it in a box without water.","Usman threw the seed away.","Usman covered it with stones."],answer:0}],
+"Use of exclamation marks":[{question:"Which sentence shows strong feeling?",options:["What a beautiful flower!","Where is my book?","I have a pencil.","Please sit down."],answer:0},{question:"Hurray___ We won the match.",options:["!","?",",","."],answer:0},{question:"Which sentence expresses surprise?",options:["Wow, that is amazing!","I go to school.","What is your name?","Close the door."],answer:0}],
+"Use of helping words":[{question:"She ___ reading a book.",options:["is","are","am","be"],answer:0},{question:"They ___ playing outside.",options:["is","are","am","was"],answer:1},{question:"I ___ happy today.",options:["are","is","am","be"],answer:2}],
+"Soft sounds of letters":[{question:"Which word has a soft c sound?",options:["City","Cat","Cup","Cake"],answer:0},{question:"Which word has a soft g sound?",options:["Giraffe","Goat","Game","Gift"],answer:0},{question:"In which word c sounds like /s/?",options:["Cent","Car","Cow","Cold"],answer:0}],
+"Syllabic division":[{question:"How many syllables are in rabbit?",options:["Two","One","Three","Four"],answer:0},{question:"Choose the correct division of sunset.",options:["sun-set","s-unset","sunse-t","su-nset"],answer:0},{question:"How many syllables are in banana?",options:["Three","One","Two","Four"],answer:0}],
+"Use of pronoun":[{question:"Ali is a boy. ___ is kind.",options:["He","She","It","They"],answer:0},{question:"Sara has a doll. ___ likes it.",options:["He","She","We","They"],answer:1},{question:"The cats are hungry. ___ need food.",options:["It","He","They","She"],answer:2}],
+"Words spelling check":[{question:"Choose the correct spelling.",options:["School","Skool","Scool","Shcool"],answer:0},{question:"Choose the correct spelling.",options:["Friend","Freind","Frend","Fried"],answer:0},{question:"Choose the correct spelling.",options:["Beautiful","Beautifull","Beutiful","Beatiful"],answer:0}],
+"Short vowel sounds":[{question:"Which word has a short a sound?",options:["Cat","Cake","Rain","Day"],answer:0},{question:"Which word has a short i sound?",options:["Fish","Bike","Time","Line"],answer:0},{question:"Which word has a short o sound?",options:["Hot","Home","Boat","Go"],answer:0}],
+"Use of Conjunctions":[{question:"Ali ___ Ahmed are friends.",options:["and","but","or","because"],answer:0},{question:"I was tired, ___ I went to bed.",options:["so","or","and","but"],answer:0},{question:"Would you like tea ___ milk?",options:["or","because","so","but"],answer:0}]
+};console.log("Class 3 English bank loaded.");
