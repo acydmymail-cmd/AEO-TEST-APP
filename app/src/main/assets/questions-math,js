@@ -1,0 +1,71 @@
+window.QUESTIONS_DATA = window.QUESTIONS_DATA || {};
+window.QUESTIONS_DATA[3] = window.QUESTIONS_DATA[3] || {};
+
+window.QUESTIONS_DATA[3].Mathematics = {
+
+  "Two digits addition with carry": [
+    { question: "28 + 15 = ?", options: ["33", "43", "42", "53"], answer: 1 },
+    { question: "37 + 26 = ?", options: ["53", "63", "62", "73"], answer: 1 },
+    { question: "48 + 17 = ?", options: ["55", "65", "64", "75"], answer: 1 },
+    { question: "56 + 28 = ?", options: ["74", "84", "83", "94"], answer: 1 },
+    { question: "39 + 24 = ?", options: ["53", "63", "62", "73"], answer: 1 },
+    { question: "67 + 18 = ?", options: ["75", "85", "84", "95"], answer: 1 },
+    { question: "45 + 36 = ?", options: ["71", "81", "80", "91"], answer: 1 },
+    { question: "29 + 34 = ?", options: ["53", "63", "62", "73"], answer: 1 },
+    { question: "58 + 27 = ?", options: ["75", "85", "84", "95"], answer: 1 },
+    { question: "46 + 39 = ?", options: ["75", "85", "84", "95"], answer: 1 }
+  ],
+
+  "Statement questions of addition, subtraction and multiplication": [
+    { question: "Ali has 12 apples. He buys 8 more. How many apples does he have?", options: ["18", "20", "22", "24"], answer: 1 },
+    { question: "Sara has 25 pencils. She gives away 7. How many are left?", options: ["17", "18", "19", "20"], answer: 1 },
+    { question: "There are 4 bags with 5 balls in each. How many balls are there?", options: ["15", "20", "25", "10"], answer: 1 },
+    { question: "A shop has 30 toys and sells 12. How many toys remain?", options: ["16", "18", "20", "22"], answer: 1 },
+    { question: "There are 15 boys and 14 girls. How many children altogether?", options: ["28", "29", "30", "31"], answer: 1 },
+    { question: "One box has 6 crayons. How many crayons are in 3 boxes?", options: ["12", "18", "15", "21"], answer: 1 },
+    { question: "Ahmed has 40 rupees. He spends 15 rupees. How much is left?", options: ["20", "25", "30", "35"], answer: 1 },
+    { question: "A farmer has 7 cows and 8 goats. How many animals are there?", options: ["14", "15", "16", "17"], answer: 1 },
+    { question: "There are 5 rows with 4 chairs in each row. How many chairs?", options: ["15", "20", "25", "10"], answer: 1 },
+    { question: "A basket has 18 mangoes. Another has 12. How many altogether?", options: ["28", "30", "32", "34"], answer: 1 }
+  ],
+
+  "Unitary method": [
+    { question: "1 pencil costs Rs. 5. What is the cost of 2 pencils?", options: ["Rs. 5", "Rs. 10", "Rs. 15", "Rs. 20"], answer: 1 },
+    { question: "1 book costs Rs. 20. What is the cost of 3 books?", options: ["Rs. 40", "Rs. 60", "Rs. 50", "Rs. 80"], answer: 1 },
+    { question: "4 oranges cost Rs. 20. What is the cost of 1 orange?", options: ["Rs. 4", "Rs. 5", "Rs. 6", "Rs. 8"], answer: 1 },
+    { question: "1 toy costs Rs. 15. What is the cost of 4 toys?", options: ["Rs. 45", "Rs. 60", "Rs. 50", "Rs. 75"], answer: 1 },
+    { question: "5 pens cost Rs. 25. What is the cost of 1 pen?", options: ["Rs. 4", "Rs. 5", "Rs. 6", "Rs. 10"], answer: 1 },
+    { question: "1 kg apples costs Rs. 100. What is the cost of 2 kg?", options: ["Rs. 100", "Rs. 200", "Rs. 150", "Rs. 250"], answer: 1 },
+    { question: "3 notebooks cost Rs. 30. What is the cost of 1 notebook?", options: ["Rs. 5", "Rs. 10", "Rs. 15", "Rs. 20"], answer: 1 },
+    { question: "1 chair costs Rs. 50. What is the cost of 3 chairs?", options: ["Rs. 100", "Rs. 150", "Rs. 200", "Rs. 250"], answer: 1 },
+    { question: "6 bananas cost Rs. 30. What is the cost of 1 banana?", options: ["Rs. 3", "Rs. 5", "Rs. 6", "Rs. 10"], answer: 1 },
+    { question: "1 bottle costs Rs. 25. What is the cost of 2 bottles?", options: ["Rs. 25", "Rs. 50", "Rs. 75", "Rs. 100"], answer: 1 }
+  ],
+
+  "Fraction (Proper, improper, numerator, denominator)": [
+    { question: "In the fraction 3/5, what is the numerator?", options: ["5", "3", "8", "2"], answer: 1 },
+    { question: "In the fraction 2/7, what is the denominator?", options: ["2", "7", "9", "5"], answer: 1 },
+    { question: "Which is a proper fraction?", options: ["7/4", "3/5", "6/2", "8/3"], answer: 1 },
+    { question: "Which is an improper fraction?", options: ["2/5", "7/3", "1/4", "3/8"], answer: 1 },
+    { question: "How many equal parts are shown by the denominator in 4/9?", options: ["4", "9", "13", "5"], answer: 1 },
+    { question: "Which fraction means one half?", options: ["1/3", "1/2", "1/4", "2/3"], answer: 1 },
+    { question: "Which fraction is greater than 1?", options: ["2/5", "5/3", "1/4", "3/7"], answer: 1 },
+    { question: "What is the numerator of 6/8?", options: ["8", "6", "14", "2"], answer: 1 },
+    { question: "Which fraction is a proper fraction?", options: ["9/5", "4/7", "8/3", "5/2"], answer: 1 },
+    { question: "A pizza is divided into 4 equal parts. You eat 1 part. What fraction did you eat?", options: ["1/2", "1/4", "3/4", "4/1"], answer: 1 }
+  ],
+
+  "Capacity Units": [
+    { question: "Which unit is used to measure liquid capacity?", options: ["Kilogram", "Litre", "Metre", "Centimetre"], answer: 1 },
+    { question: "1 litre is equal to how many millilitres?", options: ["100 ml", "1000 ml", "10 ml", "500 ml"], answer: 1 },
+    { question: "Which is greater?", options: ["500 ml", "1 litre", "250 ml", "100 ml"], answer: 1 },
+    { question: "2 litres are equal to how many millilitres?", options: ["200 ml", "2000 ml", "1000 ml", "500 ml"], answer: 1 },
+    { question: "Half a litre is equal to how many millilitres?", options: ["100 ml", "500 ml", "750 ml", "1000 ml"], answer: 1 },
+    { question: "Which container usually holds more liquid?", options: ["Cup", "Water tank", "Spoon", "Small glass"], answer: 1 },
+    { question: "300 ml + 200 ml = ?", options: ["400 ml", "500 ml", "600 ml", "700 ml"], answer: 1 },
+    { question: "1 litre - 250 ml = ?", options: ["500 ml", "750 ml", "850 ml", "250 ml"], answer: 1 },
+    { question: "3 litres are equal to how many millilitres?", options: ["300 ml", "3000 ml", "30 ml", "1000 ml"], answer: 1 },
+    { question: "Which unit is smaller?", options: ["Litre", "Millilitre", "Both are same", "Kilogram"], answer: 1 }
+  ]
+
+};
