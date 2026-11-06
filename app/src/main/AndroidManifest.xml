@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:theme="@android:style/Theme.Material.Light.NoActionBar"
         android:label="AEO Test &amp; Learning"
         android:usesCleartextTraffic="true"
         android:icon="@drawable/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3811857750727118~2764739957" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
