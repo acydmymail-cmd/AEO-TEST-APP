@@ -131,7 +131,7 @@
     // Class 4 Math Topics 4 and 5: show the Urdu question first,
     // followed by its original English wording on a separate line.
     if(cls===4 && (topic==="Factorization" || topic==="Prime number, composite numbers identification")){
-     item[qkey]=String(translatedQuestion)+"\\nEnglish: "+englishQuestion;
+     item[qkey]=String(translatedQuestion)+"\nEnglish: "+englishQuestion;
     }else{
      item[qkey]=translatedQuestion;
     }
