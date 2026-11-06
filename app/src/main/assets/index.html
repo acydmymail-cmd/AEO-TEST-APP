@@ -53,7 +53,7 @@ h3{color:var(--navy);line-height:1.55}#home>h2{margin:23px 3px 14px}
 #feedback{font-weight:800;margin:12px 0}#heading{margin:18px 3px 15px;font-size:20px}
 .student-card{margin:10px 0;padding:15px;border:1px solid #e1ebf1;border-radius:18px;background:linear-gradient(140deg,#f9fcff,#edf8f6)}
 .result-score{font-size:48px;color:#079b91;font-weight:950;letter-spacing:-2px}.small-text{font-size:12px;color:var(--muted)}
-footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[dir="rtl"]{text-align:right}
+footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[dir="rtl"]{text-align:right;font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic",system-ui,Arial,sans-serif;line-height:1.9}
 @media(max-width:390px){main{padding:18px 12px 28px}.classes,.subjects{gap:8px}.classbtn{min-height:105px;font-size:15px;border-radius:18px}.subject{min-height:124px;font-size:12px;border-radius:18px}.subject span{width:46px;height:46px;font-size:24px}.welcome{padding:17px}.welcome h2{font-size:19px}.panel{padding:16px}}
 </style>
 </head>
@@ -256,7 +256,7 @@ function showQuestion(){
  items.innerHTML = `
  <div class="panel">
   <p id="progress">${currentSubject === "Mathematics" ? "سوال " : "Question "}${questionIndex+1} ${currentSubject === "Mathematics" ? "از" : "of"} ${currentQuestions.length}</p>
-  <h3>${escapeHTML(q.q)}</h3>
+  <h3 dir="${currentSubject === "Mathematics" || currentSubject === "Urdu" ? "rtl" : "auto"}">${escapeHTML(q.q)}</h3>
   <div id="options"></div>
   <div id="feedback"></div>
 
