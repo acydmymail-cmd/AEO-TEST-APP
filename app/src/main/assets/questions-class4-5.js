@@ -50,16 +50,18 @@ window.QUESTIONS_DATA[4].English = {
   ]),
 
   "Compound words": makeMCQs([
-    ["Sun + Flower makes:", ["Sunrain","Sunflower","Flowerpot","Sunlight"], 1],
-    ["Rain + Bow makes:", ["Rainfall","Rainbow","Raincoat","Rainwater"], 1],
-    ["Tooth + Brush makes:", ["Toothpaste","Toothbrush","Toothache","Brushes"], 1],
-    ["Foot + Ball makes:", ["Football","Footstep","Balloon","Footwear"], 0],
-    ["Which word is a compound word?", ["Apple","Notebook","Happy","Quick"], 1],
-    ["Bed + Room makes:", ["Bedroom","Bathroom","Bedtime","Roommate"], 0],
-    ["Butter + Fly makes:", ["Butterfly","Buttercup","Flyover","Buttercream"], 0],
-    ["Cup + Cake makes:", ["Cupboard","Cupcake","Cups","Cake"], 1],
-    ["Which word is a compound word?", ["Sunshine","Sunny","Bright","Light"], 0],
-    ["Class + Room makes:", ["Classmate","Classroom","Classwork","Classbook"], 1]
+    ["Which is a compound word?", ["Apple", "Sunflower", "Happy", "Quick"], 1],
+    ["Which is a compound word?", ["Raincoat", "Rainy", "Wet", "Cloud"], 0],
+    ["Which is a compound word?", ["Toothpaste", "Tooth", "Paste", "Brush"], 0],
+    ["Which is a compound word?", ["Foot", "Ball", "Football", "Run"], 2],
+    ["Which is a compound word?", ["Bedroom", "Bed", "Room", "Sleep"], 0],
+    ["Which is a compound word?", ["Butter", "Fly", "Butterfly", "Yellow"], 2],
+    ["Which is a compound word?", ["Cup", "Cake", "Cupcake", "Sweet"], 2],
+    ["Which is a compound word?", ["Classroom", "Class", "Room", "Student"], 0],
+    ["Which is a compound word?", ["Sunshine", "Sunny", "Bright", "Light"], 0],
+    ["Which is a compound word?", ["Toothbrush", "Tooth", "Brush", "Clean"], 0],
+    ["Which is a compound word?", ["Notebook", "Note", "Book", "Paper"], 0],
+    ["Which is a compound word?", ["Playground", "Play", "Ground", "Game"], 0]
   ]),
 
   "Types of Nouns": makeMCQs([
@@ -412,7 +414,7 @@ window.QUESTIONS_DATA[5].English = {
     ["Which word sounds like 'Tail'?", ["Tale","Tile","Tell","Tall"], 0]
   ]),
 
-  "Types of sentences i.e. interrogative, affirmative, negative etc.": makeMCQs([
+  "Types of sentences: Interrogative, affirmative, negative etc.": makeMCQs([
     ["'What is your name?' is a:", ["Affirmative","Interrogative","Negative","Exclamatory"], 1],
     ["'I like mangoes.' is a:", ["Negative","Interrogative","Affirmative","Exclamatory"], 2],
     ["'I do not like tea.' is a:", ["Affirmative","Negative","Interrogative","Exclamatory"], 1],
