@@ -90,6 +90,7 @@
 <script src="questions-urdu.js"></script>
 <script src="questions-math.js"></script>
 <script src="questions-class4-5.js"></script>
+<script src="questions-math-urdu.js"></script>
 
 <script>
 
@@ -170,7 +171,7 @@ function selectSubject(s){
   const shownTopic = currentSubject === "Mathematics" ? (MATH_TOPIC_LABELS[currentClass]?.[topic] || topic) : topic;
   btn.textContent = "📚 " + (i+1) + ". " + shownTopic;
   btn.dir = currentSubject === "Mathematics" ? "rtl" : "auto";
-  btn.onclick = () => openTopic(MATH_TOPIC_ALIASES[currentClass]?.[topic] || topic);
+  btn.onclick = () => openTopic(MATH_TOPIC_LABELS[currentClass]?.[topic] || MATH_TOPIC_ALIASES[currentClass]?.[topic] || topic);
   items.appendChild(btn);
  });
 }
