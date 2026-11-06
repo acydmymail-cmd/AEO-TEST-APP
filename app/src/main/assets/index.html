@@ -1,6 +1,136 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AEO Test</title>
-<style>body{font-family:Arial;background:#f1f5f9;color:#10223b;margin:0;padding:20px}header{background:#184e77;color:white;padding:20px;border-radius:16px;text-align:center}h1{margin:4px}button{border:0;background:#fff;color:#184e77;padding:14px;margin:7px;border-radius:12px;font-size:16px;box-shadow:0 2px 7px #ccd}section{background:white;padding:15px;border-radius:14px;margin-top:16px} .subjects{display:flex;flex-wrap:wrap;justify-content:center}</style></head><body>
-<header><h1>AEO TEST</h1><p>Classes 3, 4 & 5 • Learning and Practice</p></header>
-<section><h2>Select Class</h2><div class="subjects"><button onclick="showClass(3)">Class 3</button><button onclick="showClass(4)">Class 4</button><button onclick="showClass(5)">Class 5</button></div></section>
-<section id="content"><h2>Welcome</h2><p>Select a class to view subjects.</p></section>
-<script>function showClass(c){document.getElementById('content').innerHTML='<h2>Class '+c+'</h2><p>Select subject for SLO practice:</p><div class="subjects"><button onclick="practice(\'English\', '+c+')">English</button><button onclick="practice(\'Urdu\', '+c+')">Urdu</button><button onclick="practice(\'Math\', '+c+')">Math</button><button onclick="test('+c+')">Monthly Test (9 Questions)</button></div><div id="detail"></div>'}function practice(s,c){document.getElementById('detail').innerHTML='<h3>Class '+c+' • '+s+'</h3><p>SLO practice content will be added in monthly update.</p>'}function test(c){document.getElementById('detail').innerHTML='<h3>Class '+c+' Monthly Test</h3><p>9 questions: 3 English, 3 Urdu, 3 Math. Student selection and question bank will be added next.</p>'}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO Test & Learning</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#f2f5ff;color:#202747;
+}
+header{
+ background:linear-gradient(135deg,#253cbb,#7049d8);
+ color:white;text-align:center;padding:28px 15px 35px;
+ border-radius:0 0 30px 30px;
+}
+.logo{
+ width:88px;height:88px;background:white;
+ border-radius:25px;margin:auto auto 12px;
+ display:flex;align-items:center;justify-content:center;
+ box-shadow:0 6px 18px #172b8060;
+}
+.logo svg{width:68px;height:68px}
+header h1{font-size:23px;margin:8px 0}
+header p{font-size:13px;margin:6px 0;opacity:.9}
+main{max-width:550px;margin:auto;padding:20px 16px}
+h2{font-size:19px;margin:12px 0 15px}
+.classes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.class-btn{
+ border:0;border-radius:18px;padding:20px 5px;
+ color:white;font-size:17px;font-weight:bold;
+ background:linear-gradient(145deg,#4775ed,#2945bd);
+ box-shadow:0 5px 12px #253cbb30;
+}
+.class-btn:active,.subject:active{transform:scale(.97)}
+.subjects{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.subject{
+ border:0;border-radius:17px;padding:18px 5px;
+ background:white;box-shadow:0 4px 14px #253cbb12;
+ color:#26345e;font-weight:bold;font-size:13px;
+}
+.subject span{display:block;font-size:27px;margin-bottom:9px}
+.subject:nth-child(1){border-bottom:4px solid #4385ed}
+.subject:nth-child(2){border-bottom:4px solid #24a68a}
+.subject:nth-child(3){border-bottom:4px solid #f2ad38}
+.panel{
+ background:white;border-radius:20px;padding:18px;
+ margin-top:22px;box-shadow:0 5px 18px #253cbb12;
+}
+#message{
+ margin-top:18px;padding:15px;background:#e8edff;
+ border-radius:14px;text-align:center;font-size:14px;
+ color:#263c9b;display:none;
+}
+footer{text-align:center;padding:22px;color:#8189a5;font-size:12px}
+</style>
+</head>
+
+<body>
+<header>
+ <div class="logo">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+   <path d="M12 30 Q32 20 50 34 Q68 20 88 30 L88 75 Q67 65 50 80 Q33 65 12 75Z" fill="#3155c9"/>
+   <path d="M50 34 L50 80" stroke="white" stroke-width="4"/>
+   <path d="M22 39 Q36 34 44 41 M22 50 Q36 45 44 52 M56 41 Q68 34 80 39 M56 52 Q68 45 80 50" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+   <path d="M50 8 L55 20 L68 21 L58 30 L61 43 L50 36 L39 43 L42 30 L32 21 L45 20Z" fill="#ffbd39"/>
+  </svg>
+ </div>
+ <h1>AEO TEST & LEARNING</h1>
+ <p>Learn • Practice • Achieve</p>
+</header>
+
+<main>
+ <h2>🎓 Select Your Class</h2>
+ <div class="classes">
+  <button class="class-btn" onclick="chooseClass(3)">Class 3</button>
+  <button class="class-btn" onclick="chooseClass(4)">Class 4</button>
+  <button class="class-btn" onclick="chooseClass(5)">Class 5</button>
+ </div>
+
+ <div class="panel">
+  <h2 id="subjectHeading">📚 Select a Subject</h2>
+  <div class="subjects">
+   <button class="subject" onclick="chooseSubject('English')">
+    <span>📘</span>English
+   </button>
+   <button class="subject" onclick="chooseSubject('Urdu')">
+    <span>📗</span>Urdu
+   </button>
+   <button class="subject" onclick="chooseSubject('Mathematics')">
+    <span>🔢</span>Maths
+   </button>
+  </div>
+  <div id="message"></div>
+ </div>
+
+ <div class="panel">
+  <h2>📝 Assessment Test</h2>
+  <p>Student assessment and automatic result system.</p>
+  <div id="testInfo">Select your class to continue.</div>
+ </div>
+</main>
+
+<footer>© AEO Test & Learning | Education for Everyone</footer>
+
+<script>
+let selectedClass = null;
+
+function chooseClass(c){
+ selectedClass = c;
+ document.getElementById("subjectHeading").innerText =
+ "📚 Class " + c + " - Select a Subject";
+ document.getElementById("testInfo").innerText =
+ "Class " + c + " selected. Assessment section is ready for the next development stage.";
+ showMessage("Class " + c + " selected successfully!");
+}
+
+function chooseSubject(s){
+ if(!selectedClass){
+  showMessage("Please select your class first.");
+  return;
+ }
+ showMessage("Class " + selectedClass + " - " + s +
+ " selected. SLO practice topics will be added in the next step.");
+}
+
+function showMessage(t){
+ let box=document.getElementById("message");
+ box.innerText=t;
+ box.style.display="block";
+}
+</script>
+</body>
+</html>
