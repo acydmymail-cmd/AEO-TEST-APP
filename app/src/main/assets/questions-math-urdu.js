@@ -96,7 +96,25 @@
     return x.replace("How many sides does a triangle have?","مثلث کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a square have?","مربع کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a pentagon have?","پنج ضلعی شکل کے کتنے اضلاع ہوتے ہیں؟").replace("How many sides does a hexagon have?","شش ضلعی شکل کے کتنے اضلاع ہوتے ہیں؟").replace("How many right angles does a rectangle have?","مستطیل میں کتنے قائمہ زاویے ہوتے ہیں؟").replace("A circle has how many corners?","دائرے کے کتنے کونے ہوتے ہیں؟").replace("What is the name of an angle of 90 degrees?","90 درجے کے زاویے کو کیا کہتے ہیں؟").replace("An angle smaller than 90 degrees is:","90 درجے سے چھوٹا زاویہ کیا کہلاتا ہے؟").replace("How many vertices does a cube have?","مکعب کے کتنے کونے ہوتے ہیں؟").replace("Which shape has four equal sides?","کس شکل کے چاروں اضلاع برابر ہوتے ہیں؟");
    }
   }
-  if(cls===4 && (topic==="Factorization" || topic==="Prime number, composite numbers identification")) return "English: "+String(q)+"\\nاردو: "+x;
+  if(cls===4 && topic==="Factorization"){
+   let ur=x;
+   if(x.startsWith("Factors of ")) ur=x.replace("Factors of ","").replace(" are:"," کے عوامل کون سے ہیں؟");
+   else if(x.startsWith("Which is a factor of ")) ur=x.replace("Which is a factor of ","").replace("?"," کا عامل کون سا ہے؟");
+   else if(x.startsWith("Which number is a factor of ")) ur=x.replace("Which number is a factor of ","").replace("?"," کا عامل کون سا ہے؟");
+   return String(q)+"\\nاردو: "+ur;
+  }
+  if(cls===4 && topic==="Prime number, composite numbers identification"){
+   const primeMap={
+   "Which is a prime number?":"اولی عدد کون سا ہے؟",
+   "Which is a composite number?":"مرکب عدد کون سا ہے؟",
+   "Is 11 a prime number?":"کیا 11 اولی عدد ہے؟",
+   "Which number has only two factors?":"کس عدد کے صرف دو عوامل ہوتے ہیں؟",
+   "The number 1 is:":"عدد 1 کیا ہے؟",
+   "How many factors does 7 have?":"7 کے کتنے عوامل ہوتے ہیں؟",
+   "Which is the only even prime number?":"واحد جفت اولی عدد کون سا ہے؟"
+   };
+   return String(q)+"\\nاردو: "+(primeMap[x]||x);
+  }
   return x;
  }
  for(const cls of [3,4,5]){
