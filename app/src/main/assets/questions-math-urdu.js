@@ -115,6 +115,8 @@
      for(const [en,ur] of Object.entries(words)) out=out.replace(new RegExp("\\b"+en+"\\b","gi"),ur);
      return out.replace(/centi/gi,"سینٹی").replace(/centiمیٹر/gi,"سینٹی میٹر").replace(/دونوں same/gi,"دونوں برابر").replace(/کوئی بھی نہیں اولی عدد nor مرکب عدد/gi,"نہ اولی نہ مرکب عدد").replace(/Even اولی عدد/gi,"جفت اولی عدد").replace(/One چوتھائی/gi,"ایک چوتھائی").replace(/One پورا/gi,"ایک مکمل").replace(/rupees/gi,"روپے").replace(/litres/gi,"لیٹر").replace(/litre/gi,"لیٹر").replace(/mL/gi,"ملی لیٹر").replace(/metres/gi,"میٹر").replace(/centimetres/gi,"سینٹی میٹر");
     });
+    if(cls===4 && topic==="Factorization"){ for(let j=0;j<mapped.length;j++) mapped[j]="Factors / عوامل: "+mapped[j]; }
+    if(cls===4 && topic==="Prime number, composite numbers identification"){ const primes=[2,3,5,7,11,13,17,19,23,29,31]; for(let j=0;j<mapped.length;j++){ const num=parseInt(String(mapped[j]).match(/\\d+/)?.[0]||"0",10); const tag=num===1?"Neither / نہ اولی نہ مرکب":primes.includes(num)?"Prime / اولی عدد":"Composite / مرکب عدد"; mapped[j]=String(mapped[j])+" ("+tag+")"; } }
     if(item.o) item.o=mapped; else item.options=mapped;
    }
   }
