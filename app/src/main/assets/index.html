@@ -103,7 +103,7 @@ main{padding:17px 12px 30px}
 .result-score{color:#0aab38;text-shadow:0 2px #d6ffe2}
 @media(max-width:390px){.classes{gap:7px}.classbtn{min-height:104px;font-size:15px}.subjects{gap:9px}.subject{min-height:76px;font-size:15px}.subject span{width:51px;height:51px;font-size:29px}.welcome h2{font-size:20px}}
 
-</style>
+ .subject small{display:block;font-size:13px;font-weight:600;opacity:.85;margin-top:5px}.subject b{margin-left:auto;font-size:32px}.subject-selected{outline:3px solid #079b91;transform:translateY(-1px)}.subject-start{width:100%;min-height:64px;margin-top:18px;border-radius:20px;background:linear-gradient(140deg,#12b54e,#07852c);font-size:20px;font-weight:900;box-shadow:0 9px 20px #07852c25}@media(max-width:390px){.subject{min-height:90px;padding:12px 15px;font-size:19px}.subject span{width:60px;height:60px;flex-basis:60px;font-size:35px}}\n</style>
 </head>
 
 <body>
@@ -119,7 +119,7 @@ main{padding:17px 12px 30px}
 
  <div id="home">
 
-  <section class="welcome"><div class="eyebrow">🌟 WELCOME TO AEO LEARNING 🌟</div><h2>Be Smart… Be Successful!</h2><p>Assess • Practice • Grow — Class 3, 4 aur 5 ke liye learning fun banayein.</p><div class="hero-kids" aria-label="School children illustration"><svg viewBox="0 0 320 105" style="display:block;width:100%;max-width:330px;margin:8px auto 0" role="img" aria-label="Three happy students with books"><circle cx="160" cy="48" r="46" fill="#ffffff22"/><g><circle cx="75" cy="35" r="22" fill="#f4c29b"/><path d="M52 34Q53 6 77 10Q99 12 98 36L88 23L62 25Z" fill="#5a2a22"/><path d="M47 88Q49 53 75 53Q102 53 104 88Z" fill="#ff4f91"/><rect x="59" y="68" width="33" height="24" rx="4" fill="#fff3a0"/><circle cx="68" cy="34" r="2.5" fill="#24365a"/><circle cx="83" cy="34" r="2.5" fill="#24365a"/><path d="M67 44Q76 52 85 44" stroke="#a64a43" stroke-width="2" fill="none"/></g><g><circle cx="160" cy="28" r="25" fill="#f3c39b"/><path d="M134 30Q130 2 161 2Q190 3 186 32L178 19L145 18Z" fill="#42271f"/><path d="M125 99Q128 48 160 49Q192 48 195 99Z" fill="#fff"/><path d="M143 52L160 75L177 52" fill="#1b63dd"/><rect x="143" y="72" width="35" height="26" rx="5" fill="#22b85b"/><circle cx="151" cy="28" r="2.5" fill="#25385d"/><circle cx="169" cy="28" r="2.5" fill="#25385d"/><path d="M151 39Q160 47 169 39" stroke="#a64a43" stroke-width="2" fill="none"/></g><g><circle cx="245" cy="36" r="21" fill="#dca77e"/><path d="M224 35Q222 8 246 12Q269 14 267 37L257 22L231 25Z" fill="#34221d"/><path d="M218 88Q220 54 245 54Q270 54 272 88Z" fill="#20a5ee"/><rect x="234" y="65" width="29" height="25" rx="4" fill="#ffe36b"/><circle cx="238" cy="35" r="2.5" fill="#24365a"/><circle cx="252" cy="35" r="2.5" fill="#24365a"/><path d="M238 44Q246 50 254 44" stroke="#a64a43" stroke-width="2" fill="none"/></g></svg></div></section>
+  <section class="welcome"><div class="eyebrow">🌟 WELCOME TO AEO LEARNING 🌟</div><h2>Be Smart… Be Successful!</h2><p>Assess • Practice • Grow — Class 3, 4 aur 5 ke liye learning fun banayein.</p></section>
   <h2>🎓 Apni Class Select Karein</h2>
 
   <div class="classes">
@@ -224,27 +224,24 @@ const MATH_TOPIC_LABELS={3:{"Two digits addition with carry":"دو ہندسوں 
 const MATH_TOPIC_ALIASES={4:{"Decimal questions (+, -, ÷, ×)":"Decimal question (+,-,÷,×)","Conversion: Week to days, Liter to milliliters, Kg to g":"Conversion: Week to days, Liter to milliliters, Kg to g etc.","Prime and composite numbers identification":"Prime number, composite numbers identification","Identification of values from graph":"Identification values from graph","Four digits addition with carry and subtraction with borrow":"Four digits addition with carry and subtraction from borrow","Recognize numbers from words (e.g. Eighty-four thousand fifty-six)":"Recognize number from words i.e. Eighty-four thousand fifty-six"},5:{"Multiplication: Two digits with two digits":"multiplication two digits with two digits","Simplification of fractions":"Fraction simplification of fractions","Decimal operations: Multiplication and division":"Decimal operation i.e. multiplication, division"}};
 
 
+let selectedSubjectForTest = "English";
+function chooseSubject(s){
+ selectedSubjectForTest = s;
+ document.querySelectorAll(".subject").forEach(btn=>btn.classList.toggle("subject-selected",btn.dataset.subject===s));
+}
 function selectClass(c){
  currentClass = c;
  appStep = "subjects";
+ selectedSubjectForTest = "English";
  showPage("Class " + c + " - Select Subject");
-
  let items = document.getElementById("items");
-
  items.innerHTML = `
  <div class="subjects">
-  <button class="subject" onclick="selectSubject('English')">
-   <span>📘</span>English
-  </button>
-
-  <button class="subject" onclick="selectSubject('Urdu')">
-   <span>📗</span>اردو
-  </button>
-
-  <button class="subject" onclick="selectSubject('Mathematics')">
-   <span>➗</span>ریاضی
-  </button>
- </div>`;
+  <button class="subject subject-selected" data-subject="English" onclick="chooseSubject('English')"><span>📖</span><div>English <small>Practice &amp; Test</small></div><b>›</b></button>
+  <button class="subject" data-subject="Urdu" onclick="chooseSubject('Urdu')"><span>📝</span><div>اردو <small>Practice &amp; Test</small></div><b>›</b></button>
+  <button class="subject" data-subject="Mathematics" onclick="chooseSubject('Mathematics')"><span>➕</span><div>Mathematics <small>Practice &amp; Test</small></div><b>›</b></button>
+ </div>
+ <button class="next subject-start" onclick="selectSubject(selectedSubjectForTest)">▶ Start Test</button>`;
 }
 
 function selectSubject(s){
@@ -322,7 +319,7 @@ function showQuestion(){
  document.getElementById("heading").innerText = currentSubject === "Mathematics" ? "ریاضی کی مشق" : "Practice Test";
 
  items.innerHTML = `
- ${currentClass === 5 && currentSubject === "Mathematics" && String(currentTopic).includes("اعشاری") ? "<div class=\"panel\" dir=\"rtl\"><h3>تصویری گراف — اعشاری اعداد</h3><div style=\"display:flex;align-items:flex-end;justify-content:space-around;height:145px;border-left:2px solid #52677f;border-bottom:2px solid #52677f;padding:8px\"><div style=\"height:50%;width:18%;background:#079b91;text-align:center;color:white\">2.5<br>A</div><div style=\"height:70%;width:18%;background:#079b91;text-align:center;color:white\">3.5<br>B</div><div style=\"height:90%;width:18%;background:#079b91;text-align:center;color:white\">4.0<br>C</div><div style=\"height:40%;width:18%;background:#079b91;text-align:center;color:white\">2.0<br>D</div></div></div>\n" : ""}
+ ${currentClass === 4 && currentSubject === "Mathematics" && String(currentTopic).includes("گراف") ? "<div class=\"panel\" dir=\"rtl\"><h3>گراف سے معلومات پڑھنا — تصویری گراف</h3><p>مختلف پھلوں کی تعداد</p><div style=\"display:flex;align-items:flex-end;justify-content:space-around;height:170px;border-left:2px solid #52677f;border-bottom:2px solid #52677f;padding:8px;gap:8px\"><div style=\"height:55%;width:19%;background:#087be5;border-radius:8px 8px 0 0;text-align:center;color:white;font-weight:bold;padding-top:4px\">5<br>سیب</div><div style=\"height:85%;width:19%;background:#079b91;border-radius:8px 8px 0 0;text-align:center;color:white;font-weight:bold;padding-top:4px\">8<br>آم</div><div style=\"height:40%;width:19%;background:#8b45dc;border-radius:8px 8px 0 0;text-align:center;color:white;font-weight:bold;padding-top:4px\">4<br>مالٹے</div><div style=\"height:70%;width:19%;background:#e6a000;border-radius:8px 8px 0 0;text-align:center;color:white;font-weight:bold;padding-top:4px\">7<br>کیلے</div></div></div>" : ""}
  <div class="panel">
   <p id="progress">${currentSubject === "Mathematics" ? "سوال " : "Question "}${questionIndex+1} ${currentSubject === "Mathematics" ? "از" : "of"} ${currentQuestions.length}</p>
   <h3 dir="${currentSubject === "Mathematics" || currentSubject === "Urdu" ? "rtl" : "auto"}">${escapeHTML(q.q)}</h3>
