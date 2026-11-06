@@ -274,6 +274,7 @@ function showQuestion(){
  document.getElementById("heading").innerText = currentSubject === "Mathematics" ? "ریاضی کی مشق" : "Practice Test";
 
  items.innerHTML = `
+ ${currentClass === 5 && currentSubject === "Mathematics" && String(currentTopic).includes("اعشاری") ? "<div class=\"panel\" dir=\"rtl\"><h3>تصویری گراف — اعشاری اعداد</h3><div style=\"display:flex;align-items:flex-end;justify-content:space-around;height:145px;border-left:2px solid #52677f;border-bottom:2px solid #52677f;padding:8px\"><div style=\"height:50%;width:18%;background:#079b91;text-align:center;color:white\">2.5<br>A</div><div style=\"height:70%;width:18%;background:#079b91;text-align:center;color:white\">3.5<br>B</div><div style=\"height:90%;width:18%;background:#079b91;text-align:center;color:white\">4.0<br>C</div><div style=\"height:40%;width:18%;background:#079b91;text-align:center;color:white\">2.0<br>D</div></div></div>\n" : ""}
  <div class="panel">
   <p id="progress">${currentSubject === "Mathematics" ? "سوال " : "Question "}${questionIndex+1} ${currentSubject === "Mathematics" ? "از" : "of"} ${currentQuestions.length}</p>
   <h3 dir="${currentSubject === "Mathematics" || currentSubject === "Urdu" ? "rtl" : "auto"}">${escapeHTML(q.q)}</h3>
