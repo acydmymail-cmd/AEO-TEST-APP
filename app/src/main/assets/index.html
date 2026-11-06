@@ -108,7 +108,7 @@ footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[di
  </div>
 
  <div id="content" style="display:none">
-  <button class="back" onclick="goHome()">← Home</button>
+  <button class="back" onclick="goBack()">← Back</button>
   <h2 id="heading"></h2>
   <div id="items"></div>
  </div>
@@ -129,6 +129,8 @@ footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[di
 /* BASIC APP SETTINGS */
 
 let currentClass = null;
+let appStep = "home";
+let currentTopic = null;
 let currentSubject = null;
 let currentQuestions = [];
 let questionIndex = 0;
@@ -150,9 +152,23 @@ function showPage(title){
 }
 
 function goHome(){
+ appStep = "home";
  document.getElementById("content").style.display = "none";
  document.getElementById("home").style.display = "block";
  showStudents();
+}
+
+function goBack(){
+ if(appStep === "result"){
+  questionIndex = Math.max(0, currentQuestions.length - 1);
+  showQuestion();
+ }else if(appStep === "test"){
+  selectSubject(currentSubject);
+ }else if(appStep === "topics"){
+  selectClass(currentClass);
+ }else{
+  goHome();
+ }
 }
 
 /* CLASS AND SUBJECT SELECTION */
@@ -162,6 +178,7 @@ const MATH_TOPIC_ALIASES={4:{"Decimal questions (+, -, ÷, ×)":"Decimal questio
 
 function selectClass(c){
  currentClass = c;
+ appStep = "subjects";
  showPage("Class " + c + " - Select Subject");
 
  let items = document.getElementById("items");
@@ -184,6 +201,7 @@ function selectClass(c){
 
 function selectSubject(s){
  currentSubject = s;
+ appStep = "topics";
 
  let topics = window.SLO_DATA?.[currentClass]?.[s];
 
@@ -211,6 +229,8 @@ function selectSubject(s){
 /* PRACTICE TEST */
 
 function openTopic(topic){
+ appStep = "test";
+ currentTopic = topic;
 
  let rawQuestions =
  window.QUESTIONS_DATA?.[currentClass]?.[currentSubject]?.[topic];
@@ -244,7 +264,7 @@ function openTopic(topic){
 }
 
 function showQuestion(){
-
+ appStep = "test";
  answered = false;
 
  let q = currentQuestions[questionIndex];
@@ -327,7 +347,7 @@ function nextQuestion(){
 }
 
 function showResult(){
-
+ appStep = "result";
  let total = currentQuestions.length;
  let percent = Math.round(score/total*100);
 
