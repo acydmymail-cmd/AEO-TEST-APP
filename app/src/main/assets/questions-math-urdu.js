@@ -28,7 +28,7 @@
  "Geometry":"ہندسہ"
  }};
  const words={
- "Kilogram":"کلوگرام","Metre":"میٹر","Litre":"لیٹر","Minute":"منٹ","Gram":"گرام","Centimetre":"سینٹی میٹر","Second":"سیکنڈ","Hour":"گھنٹہ","Clock":"گھڑی","Ruler":"پیمانہ","Scale for weight":"ترازو","Cup":"کپ","Jug":"جگ","Thermometer":"تھرمامیٹر","Kilometre":"کلومیٹر","Millimetre":"ملی میٹر","Millilitre":"ملی لیٹر","Yes":"جی ہاں","No":"نہیں","Both":"دونوں","None":"کوئی نہیں","Prime":"اولی عدد","Composite":"مرکب عدد","Neither prime nor composite":"نہ اولی نہ مرکب","Even prime":"جفت اولی عدد","Monday":"پیر","Tuesday":"منگل","Bar graph":"بار گراف","Map":"نقشہ","Calendar":"کیلنڈر","Short hand":"چھوٹی سوئی","Long hand":"لمبی سوئی","Acute":"حادہ زاویہ","Right":"قائمہ زاویہ","Obtuse":"منفرجہ زاویہ","Straight":"سیدھا زاویہ","Triangle":"مثلث","Square":"مربع","Circle":"دائرہ","Oval":"بیضوی شکل","Half":"آدھا","Quarter":"چوتھائی","One quarter":"ایک چوتھائی","Three quarters":"تین چوتھائی","Whole":"پورا","One whole":"ایک مکمل","One tenth":"دسواں حصہ","Double":"دوگنا","Greater than denominator":"مخرج سے بڑا","Equal to denominator":"مخرج کے برابر","Smaller than denominator":"مخرج سے چھوٹا","Always zero":"ہمیشہ صفر","Numerator":"شمار کنندہ","Denominator":"مخرج","Whole number":"پورا عدد","Remainder":"باقی"}
+ "Kilogram":"کلوگرام","Metre":"میٹر","Litre":"لیٹر","Minute":"منٹ","Gram":"گرام","Centimetre":"سینٹی میٹر","Second":"سیکنڈ","Hour":"گھنٹہ","Clock":"گھڑی","Ruler":"پیمانہ","Scale for weight":"ترازو","Cup":"کپ","Jug":"جگ","Thermometer":"تھرمامیٹر","Kilometre":"کلومیٹر","Millimetre":"ملی میٹر","Millilitre":"ملی لیٹر","Yes":"جی ہاں","No":"نہیں","Both":"دونوں","None":"کوئی نہیں","Prime":"اولی عدد","Composite":"مرکب عدد","Neither prime nor composite":"نہ اولی نہ مرکب","Even prime":"جفت اولی عدد","Monday":"پیر","Tuesday":"منگل","Bar graph":"بار گراف","Map":"نقشہ","Calendar":"کیلنڈر","Short hand":"چھوٹی سوئی","Long hand":"لمبی سوئی","Acute":"حادہ زاویہ","Right":"قائمہ زاویہ","Obtuse":"منفرجہ زاویہ","Straight":"سیدھا زاویہ","Triangle":"مثلث","Square":"مربع","Circle":"دائرہ","Oval":"بیضوی شکل","Half":"آدھا","Quarter":"چوتھائی","One quarter":"ایک چوتھائی","Three quarters":"تین چوتھائی","Whole":"پورا","One whole":"ایک مکمل","One tenth":"دسواں حصہ","Double":"دوگنا","Greater than denominator":"مخرج سے بڑا","Equal to denominator":"مخرج کے برابر","Smaller than denominator":"مخرج سے چھوٹا","Always zero":"ہمیشہ صفر","Numerator":"شمار کنندہ","Denominator":"مخرج","Whole number":"پورا عدد","Remainder":"باقی","are equal":"برابر ہیں","Cannot measure":"ناپنا ممکن نہیں","cup":"کپ","cups":"کپ","kg":"کلوگرام","g":"گرام","cotton":"روئی","rice":"چاول","Neither":"کوئی بھی نہیں","number":"عدد"}
  ;
  function urduQuestion(q,cls,topic){
   let x=String(q);
@@ -111,7 +111,7 @@
     const opts=item.o||item.options||[];
     const mapped=opts.map(v=>{
      let out=String(v);
-     for(const [en,ur] of Object.entries(words)) out=out.replace(new RegExp("\\b"+en+"\\b","g"),ur);
+     for(const [en,ur] of Object.entries(words)) out=out.replace(new RegExp("\\b"+en+"\\b","gi"),ur);
      return out.replace(/rupees/g,"روپے").replace(/litres/g,"لیٹر").replace(/litre/g,"لیٹر").replace(/mL/g,"ملی لیٹر").replace(/metres/g,"میٹر").replace(/centimetres/g,"سینٹی میٹر");
     });
     if(item.o) item.o=mapped; else item.options=mapped;
