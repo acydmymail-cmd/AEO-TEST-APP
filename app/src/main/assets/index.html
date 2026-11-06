@@ -26,9 +26,9 @@ h3{color:var(--navy);line-height:1.55}#home>h2{margin:23px 3px 14px}
 .welcome .eyebrow{font-size:11px;letter-spacing:1.3px;font-weight:850;color:#a9eee2;margin-bottom:7px}
 .welcome h2{color:#fff;font-size:21px;margin:0 0 7px;max-width:80%}
 .welcome p{position:relative;z-index:1;color:#e1f5f2;font-size:13px;line-height:1.65;margin:0;max-width:88%}
-.classes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
-.classbtn{min-width:0;min-height:116px;padding:15px 5px 13px;border:1px solid #ffffff70;border-radius:22px;color:#fff;font-size:17px;font-weight:900;box-shadow:0 10px 22px #183b5b20;background:linear-gradient(150deg,#08a99a,#087b83)}
-.classbtn:before{content:"📘";display:block;font-size:25px;margin-bottom:8px}
+.classes{display:grid;grid-template-columns:1fr;gap:14px}
+.classbtn{display:flex;align-items:center;gap:18px;width:100%;min-width:0;min-height:105px;padding:16px 22px;border:1px solid #ffffff70;border-radius:23px;color:#fff;font-size:22px;font-weight:900;box-shadow:0 10px 22px #183b5b20;background:linear-gradient(150deg,#08a99a,#087b83);text-align:left}
+.classbtn:before{content:"📘";display:grid;place-items:center;width:72px;height:72px;flex:0 0 72px;border-radius:19px;background:#ffffff20;font-size:42px}
 .classbtn:nth-child(2){background:linear-gradient(150deg,#478ac8,#285283)}.classbtn:nth-child(2):before{content:"📗"}
 .classbtn:nth-child(3){background:linear-gradient(150deg,#8b78d5,#51479b)}.classbtn:nth-child(3):before{content:"📙"}
 .panel{margin-top:16px;padding:19px;border:1px solid #e5edf4;border-radius:23px;background:linear-gradient(145deg,#fff,#fbfdff);box-shadow:var(--shadow)}
@@ -103,7 +103,7 @@ main{padding:17px 12px 30px}
 .result-score{color:#0aab38;text-shadow:0 2px #d6ffe2}
 @media(max-width:390px){.classes{gap:7px}.classbtn{min-height:104px;font-size:15px}.subjects{gap:9px}.subject{min-height:76px;font-size:15px}.subject span{width:51px;height:51px;font-size:29px}.welcome h2{font-size:20px}}
 
- .subject small{display:block;font-size:13px;font-weight:600;opacity:.85;margin-top:5px}.subject b{margin-left:auto;font-size:32px}.subject-selected{outline:3px solid #079b91;transform:translateY(-1px)}.subject-start{width:100%;min-height:64px;margin-top:18px;border-radius:20px;background:linear-gradient(140deg,#12b54e,#07852c);font-size:20px;font-weight:900;box-shadow:0 9px 20px #07852c25}@media(max-width:390px){.subject{min-height:90px;padding:12px 15px;font-size:19px}.subject span{width:60px;height:60px;flex-basis:60px;font-size:35px}}\n</style>
+ .subject small{display:block;font-size:13px;font-weight:600;opacity:.85;margin-top:5px}.subject b{margin-left:auto;font-size:32px}.subject-selected{outline:3px solid #079b91;transform:translateY(-1px)}@media(max-width:390px){.subject{min-height:90px;padding:12px 15px;font-size:19px}.subject span{width:60px;height:60px;flex-basis:60px;font-size:35px}.classbtn{min-height:90px;padding:12px 15px;font-size:19px}.classbtn:before{width:60px;height:60px;flex-basis:60px;font-size:35px}}\n</style>
 </head>
 
 <body>
@@ -119,7 +119,6 @@ main{padding:17px 12px 30px}
 
  <div id="home">
 
-  <section class="welcome"><div class="eyebrow">🌟 WELCOME TO AEO LEARNING 🌟</div><h2>Be Smart… Be Successful!</h2><p>Assess • Practice • Grow — Class 3, 4 aur 5 ke liye learning fun banayein.</p></section>
   <h2>🎓 Apni Class Select Karein</h2>
 
   <div class="classes">
@@ -241,7 +240,7 @@ function selectClass(c){
   <button class="subject" data-subject="Urdu" onclick="chooseSubject('Urdu')"><span>📝</span><div>اردو <small>Practice &amp; Test</small></div><b>›</b></button>
   <button class="subject" data-subject="Mathematics" onclick="chooseSubject('Mathematics')"><span>➕</span><div>Mathematics <small>Practice &amp; Test</small></div><b>›</b></button>
  </div>
- <button class="next subject-start" onclick="selectSubject(selectedSubjectForTest)">▶ Start Test</button>`;
+ `;
 }
 
 function selectSubject(s){
