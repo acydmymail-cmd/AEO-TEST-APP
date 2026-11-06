@@ -55,6 +55,54 @@ h3{color:var(--navy);line-height:1.55}#home>h2{margin:23px 3px 14px}
 .result-score{font-size:48px;color:#079b91;font-weight:950;letter-spacing:-2px}.small-text{font-size:12px;color:var(--muted)}
 footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[dir="rtl"]{text-align:right;font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic",system-ui,Arial,sans-serif;line-height:1.9}
 @media(max-width:390px){main{padding:18px 12px 28px}.classes,.subjects{gap:8px}.classbtn{min-height:105px;font-size:15px;border-radius:18px}.subject{min-height:124px;font-size:12px;border-radius:18px}.subject span{width:46px;height:46px;font-size:24px}.welcome{padding:17px}.welcome h2{font-size:19px}.panel{padding:16px}}
+/* Screenshot-inspired colorful school UI */
+body{background:linear-gradient(180deg,#d9c5ff 0,#f3eaff 250px,#f5f8ff 520px);font-family:system-ui,"Noto Sans",Arial,sans-serif}
+header{padding:22px 16px 28px;border-radius:0 0 30px 30px;background:linear-gradient(145deg,#0758d9,#073baf 62%,#5725cb);box-shadow:0 10px 25px #1c36a544}
+.logo{width:88px;height:88px;border-radius:25px;background:linear-gradient(145deg,#ffed9e,#fff);border:3px solid #fff;box-shadow:0 7px 0 #ffbf2f,0 12px 22px #061a5540}
+.logo svg{width:68px;height:68px}
+header h1{font-size:clamp(22px,6vw,29px);text-shadow:0 2px 0 #193e90;letter-spacing:.4px}
+header p{font-size:12px;letter-spacing:.7px}
+.header-chip{background:#ffdf25;color:#143b91;border:0;font-weight:900}
+main{padding:17px 12px 30px}
+.welcome{padding:18px 16px 15px;border:3px solid #fff;border-radius:26px;background:linear-gradient(135deg,#0873f2,#2942ce 55%,#7b28db);box-shadow:0 8px 0 #b5a0ed,0 13px 22px #2937a52b}
+.welcome .eyebrow{color:#ffed7a;font-size:10px}
+.welcome h2{font-size:22px;text-shadow:0 2px #1d4ba6}
+.welcome p{max-width:100%;font-weight:650}
+.welcome:after{content:"🌟";font-size:45px;right:13px;top:5px;color:transparent;opacity:1}
+#home>h2{margin:22px 3px 13px;text-align:center;color:#1e3d92}
+.classes{gap:9px}
+.classbtn{min-height:112px;border:3px solid #fff;border-radius:21px;padding:12px 4px;box-shadow:0 5px 0 #173c8c55,0 9px 17px #142a6222;font-size:18px}
+.classbtn:before{font-size:28px;filter:drop-shadow(0 2px 1px #0002)}
+.classbtn:nth-child(1){background:linear-gradient(160deg,#27df49,#008b26)}
+.classbtn:nth-child(2){background:linear-gradient(160deg,#26b9ff,#0751da)}
+.classbtn:nth-child(3){background:linear-gradient(160deg,#e54cff,#7513ce)}
+.panel{border:2px solid #fff;border-radius:24px;background:linear-gradient(150deg,#fff,#fff8e7);box-shadow:0 5px 0 #e2d7ff,0 10px 20px #193b5b14}
+.panel h2{color:#1743a5}
+#studentPanel{background:linear-gradient(150deg,#fff,#f0f8ff)}
+#studentPanel h2{color:#1848a6}
+.student-card{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border:2px solid #cfe5ff;background:linear-gradient(100deg,#fff,#f0f8ff);border-radius:18px;box-shadow:0 4px 0 #dce8ff}
+.student-card h3{margin:0;flex:1;min-width:110px;color:#173a82}
+.subjects{grid-template-columns:1fr;gap:11px;margin-top:13px}
+.subject{display:flex;align-items:center;gap:13px;min-height:82px;padding:12px 15px;text-align:left;border:3px solid #fff;border-radius:20px;color:white;font-size:17px;box-shadow:0 5px 0 #203a8b55,0 9px 16px #173a6722;background:linear-gradient(100deg,#1675ed,#0647bc)}
+.subject span{width:57px;height:57px;flex:none;display:grid;place-items:center;margin:0;border:2px solid #ffffffb0;border-radius:17px;background:#ffffff25;font-size:32px}
+.subject:nth-child(2){background:linear-gradient(100deg,#18b943,#057326);color:#fff}.subject:nth-child(2) span{background:#ffffff20}
+.subject:nth-child(3){background:linear-gradient(100deg,#9b26f3,#4d08b6);color:#fff}.subject:nth-child(3) span{background:#ffffff20}
+.topic-btn{min-height:60px;gap:10px;border:2px solid #fff;background:linear-gradient(100deg,#fff,#fff6df);box-shadow:0 3px 0 #e7d9ba,0 6px 12px #253d5a10;border-radius:17px}
+.topic-btn:before{width:0;min-height:0}
+.topic-btn{position:relative;padding-left:49px}
+.topic-btn:after{content:"›";position:absolute;left:12px;top:50%;transform:translateY(-50%);width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#238bff,#174fc7);color:white;font-size:20px;font-weight:900}
+.topic-btn:nth-child(3n+2):after{background:linear-gradient(145deg,#c73fff,#7923c8)}
+.topic-btn:nth-child(3n):after{background:linear-gradient(145deg,#ffbe28,#dc7810)}
+.back{background:linear-gradient(135deg,#ffd844,#ff9d00);color:#553000;border:2px solid #fff;box-shadow:0 4px 0 #d77c00}
+.next{background:linear-gradient(135deg,#18d34b,#008d2c);border:2px solid #fff;box-shadow:0 4px 0 #067324;color:white}
+.reportbtn{background:linear-gradient(135deg,#236bff,#1743bd);border:2px solid #fff;box-shadow:0 4px 0 #163b9c}
+.option{border:2px solid #e3eaff;background:linear-gradient(100deg,#fff,#f3f7ff);border-radius:17px}
+.option.correct{background:linear-gradient(100deg,#e2ffed,#b9f4d1);border-color:#51b979}
+.option.wrong{background:linear-gradient(100deg,#fff0ed,#ffd9d5);border-color:#e58b86}
+#progress{background:#ffeb94;color:#714500;border:1px solid #ffd44a}
+.result-score{color:#0aab38;text-shadow:0 2px #d6ffe2}
+@media(max-width:390px){.classes{gap:7px}.classbtn{min-height:104px;font-size:15px}.subjects{gap:9px}.subject{min-height:76px;font-size:15px}.subject span{width:51px;height:51px;font-size:29px}.welcome h2{font-size:20px}}
+
 </style>
 </head>
 
@@ -71,7 +119,7 @@ footer{padding:24px 12px 30px;text-align:center;color:#8a9aab;font-size:11px}[di
 
  <div id="home">
 
-  <section class="welcome"><div class="eyebrow">WELCOME TO YOUR LEARNING SPACE</div><h2>Parhein, Seekhein, Kamyab Hon</h2><p>Class 3, 4 aur 5 ke liye asaan practice tests aur student progress.</p></section>
+  <section class="welcome"><div class="eyebrow">🌟 WELCOME TO AEO LEARNING 🌟</div><h2>Be Smart… Be Successful!</h2><p>Assess • Practice • Grow — Class 3, 4 aur 5 ke liye learning fun banayein.</p><div class="hero-kids" aria-label="School children illustration"><svg viewBox="0 0 320 105" style="display:block;width:100%;max-width:330px;margin:8px auto 0" role="img" aria-label="Three happy students with books"><circle cx="160" cy="48" r="46" fill="#ffffff22"/><g><circle cx="75" cy="35" r="22" fill="#f4c29b"/><path d="M52 34Q53 6 77 10Q99 12 98 36L88 23L62 25Z" fill="#5a2a22"/><path d="M47 88Q49 53 75 53Q102 53 104 88Z" fill="#ff4f91"/><rect x="59" y="68" width="33" height="24" rx="4" fill="#fff3a0"/><circle cx="68" cy="34" r="2.5" fill="#24365a"/><circle cx="83" cy="34" r="2.5" fill="#24365a"/><path d="M67 44Q76 52 85 44" stroke="#a64a43" stroke-width="2" fill="none"/></g><g><circle cx="160" cy="28" r="25" fill="#f3c39b"/><path d="M134 30Q130 2 161 2Q190 3 186 32L178 19L145 18Z" fill="#42271f"/><path d="M125 99Q128 48 160 49Q192 48 195 99Z" fill="#fff"/><path d="M143 52L160 75L177 52" fill="#1b63dd"/><rect x="143" y="72" width="35" height="26" rx="5" fill="#22b85b"/><circle cx="151" cy="28" r="2.5" fill="#25385d"/><circle cx="169" cy="28" r="2.5" fill="#25385d"/><path d="M151 39Q160 47 169 39" stroke="#a64a43" stroke-width="2" fill="none"/></g><g><circle cx="245" cy="36" r="21" fill="#dca77e"/><path d="M224 35Q222 8 246 12Q269 14 267 37L257 22L231 25Z" fill="#34221d"/><path d="M218 88Q220 54 245 54Q270 54 272 88Z" fill="#20a5ee"/><rect x="234" y="65" width="29" height="25" rx="4" fill="#ffe36b"/><circle cx="238" cy="35" r="2.5" fill="#24365a"/><circle cx="252" cy="35" r="2.5" fill="#24365a"/><path d="M238 44Q246 50 254 44" stroke="#a64a43" stroke-width="2" fill="none"/></g></svg></div></section>
   <h2>🎓 Apni Class Select Karein</h2>
 
   <div class="classes">
