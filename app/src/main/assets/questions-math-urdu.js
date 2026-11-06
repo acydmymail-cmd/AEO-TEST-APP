@@ -112,7 +112,7 @@
     const mapped=opts.map(v=>{
      let out=String(v);
      for(const [en,ur] of Object.entries(words)) out=out.replace(new RegExp("\\b"+en+"\\b","gi"),ur);
-     return out.replace(/centiمیٹر/gi,"سینٹی میٹر").replace(/دونوں same/gi,"دونوں برابر").replace(/کوئی بھی نہیں اولی عدد nor مرکب عدد/gi,"نہ اولی نہ مرکب عدد").replace(/Even اولی عدد/gi,"جفت اولی عدد").replace(/One چوتھائی/gi,"ایک چوتھائی").replace(/One پورا/gi,"ایک مکمل").replace(/rupees/gi,"روپے").replace(/litres/gi,"لیٹر").replace(/litre/gi,"لیٹر").replace(/mL/gi,"ملی لیٹر").replace(/metres/gi,"میٹر").replace(/centimetres/gi,"سینٹی میٹر");
+     return out.replace(/centi/gi,"سینٹی").replace(/centiمیٹر/gi,"سینٹی میٹر").replace(/دونوں same/gi,"دونوں برابر").replace(/کوئی بھی نہیں اولی عدد nor مرکب عدد/gi,"نہ اولی نہ مرکب عدد").replace(/Even اولی عدد/gi,"جفت اولی عدد").replace(/One چوتھائی/gi,"ایک چوتھائی").replace(/One پورا/gi,"ایک مکمل").replace(/rupees/gi,"روپے").replace(/litres/gi,"لیٹر").replace(/litre/gi,"لیٹر").replace(/mL/gi,"ملی لیٹر").replace(/metres/gi,"میٹر").replace(/centimetres/gi,"سینٹی میٹر");
     });
     if(item.o) item.o=mapped; else item.options=mapped;
    }
