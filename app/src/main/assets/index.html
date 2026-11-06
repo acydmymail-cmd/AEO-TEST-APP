@@ -22,6 +22,9 @@
 .back{background:linear-gradient(135deg,#e8eef8,#d9e5f2);color:#244466}
 .option{border-radius:15px;border:1px solid #dce7f0;box-shadow:0 3px 9px #14274609}
 @media(max-width:370px){.classes,.subjects{gap:8px}.classbtn{font-size:15px}.subject{font-size:12px}.topic-btn{font-size:13px;padding:12px}}
+
+/* AEO PREMIUM REDESIGN */
+:root{--navy:#102544;--teal:#08a99a;--ink:#1c3452}body{font-family:"Noto Sans",system-ui,Arial,sans-serif;background:linear-gradient(180deg,#eaf5f8,#f5f8fc 45%,#edf4f8);color:var(--ink)}header{position:relative;overflow:hidden;padding:32px 18px 36px;border-radius:0 0 34px 34px;background:linear-gradient(135deg,#0d1e3b,#183e62 55%,#079b91);box-shadow:0 16px 35px #10254435}header:before,header:after{content:"";position:absolute;border-radius:50%;background:#ffffff0d;pointer-events:none}header:before{width:220px;height:220px;right:-75px;top:-105px}header:after{width:150px;height:150px;left:-70px;bottom:-95px}.logo{position:relative;z-index:1;width:90px;height:90px;border-radius:28px;background:linear-gradient(145deg,#fff,#d7f7ef);border:3px solid #ffffff80;box-shadow:0 12px 28px #06182c70}header h1{position:relative;z-index:1;font-size:23px;font-weight:900;letter-spacing:1.2px;text-shadow:0 2px 8px #00152c66}header p{position:relative;z-index:1;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}main{max-width:600px;padding:22px 16px 30px}#home>h2{margin:8px 2px 16px;font-size:20px;font-weight:850}.classbtn{min-height:112px;border-radius:24px;font-size:17px;padding:17px 5px;background:linear-gradient(145deg,#08a99a,#087b83);box-shadow:0 10px 22px #0b8e8a30}.classbtn:before{content:"✦";display:block;font-size:23px;margin-bottom:6px;color:#d9fffa}.classbtn:nth-child(2){background:linear-gradient(145deg,#4385c1,#204c80)}.classbtn:nth-child(3){background:linear-gradient(145deg,#8b78d5,#4c4297)}.panel{border:1px solid #e3edf4;border-radius:24px;padding:20px;box-shadow:0 12px 30px #193c5a0d;background:linear-gradient(145deg,#fff,#fbfdff)}.panel h2{font-weight:850}.panel p{color:#60758d;line-height:1.6;font-size:14px}.subject{min-height:132px;border:1px solid #e4edf3;border-radius:23px;padding:16px 5px;background:linear-gradient(150deg,#fff,#e9f8f6);box-shadow:0 9px 22px #153a5810;color:#173653;font-size:14px;font-weight:850}.subject span{display:block;font-size:35px;margin-bottom:10px}.subject:nth-child(2){background:linear-gradient(150deg,#fff,#eaf1ff)}.subject:nth-child(3){background:linear-gradient(150deg,#fff,#f0ebff)}.topic-btn{min-height:70px;border:1px solid #deebf0;border-radius:19px;padding:15px 16px;margin:10px 0;background:linear-gradient(110deg,#fff,#effaf8);box-shadow:0 6px 17px #153a580b;font-size:14px;font-weight:800;line-height:1.55}.topic-btn:before{content:"";width:5px;align-self:stretch;flex:none;border-radius:9px;background:linear-gradient(#08a99a,#65d4c5)}.option{min-height:52px;padding:15px 16px;border-radius:17px;background:#fff;border:1px solid #dfe9f1;font-size:15px;line-height:1.5;box-shadow:0 4px 12px #10254409}.option.correct{background:#e6f8ee;border-color:#5dbd88}.option.wrong{background:#fff0ef;border-color:#e48b86}.next,.back,.reportbtn{min-height:48px;border-radius:16px;padding:13px 20px;font-size:14px;font-weight:850}.next{background:linear-gradient(135deg,#08aa9a,#087a83);box-shadow:0 8px 18px #078f8733}.back{background:#e8eff7;color:#244466}.reportbtn{background:linear-gradient(135deg,#8170d1,#51469d);color:#fff}.student-card{padding:17px;border-radius:20px;background:linear-gradient(135deg,#f9fcff,#eef8f7);border:1px solid #e0ebf1;box-shadow:0 5px 15px #153a580b}.result-score{font-size:48px;letter-spacing:-2px}#progress{display:inline-block;padding:7px 12px;border-radius:99px;background:#e9f7f5;color:#087f79;font-weight:850}footer{color:#8294a8}@media(max-width:380px){header h1{font-size:20px}.classbtn{min-height:100px;font-size:15px}.subject{min-height:116px}.topic-btn{font-size:13px}}
 </style>
 </head>
 
@@ -30,7 +33,7 @@
 <header>
  <div class="logo"><svg width="58" height="58" viewBox="0 0 64 64" role="img" aria-label="AEO book logo"><path d="M8 15Q20 10 31 18V49Q20 41 8 46Z" fill="#0b9b91"/><path d="M56 15Q44 10 33 18V49Q44 41 56 46Z" fill="#244c7b"/><path d="M32 18V51" stroke="#142746" stroke-width="3"/><path d="M14 23Q21 21 26 25M14 30Q21 28 26 32M38 25Q45 21 50 23M38 32Q45 28 50 30" stroke="#fff" stroke-width="2" fill="none"/></svg></div>
  <h1>AEO TEST & LEARNING</h1>
- <p>Learn • Practice • Achieve</p>
+ <p>LEARN  •  PRACTICE  •  ACHIEVE</p>
 </header>
 
 <main>
@@ -138,7 +141,7 @@ function selectClass(c){
   </button>
 
   <button class="subject" onclick="selectSubject('Mathematics')">
-   <span>🔢</span>Mathematics
+   <span>➗</span>ریاضی
   </button>
  </div>`;
 }
