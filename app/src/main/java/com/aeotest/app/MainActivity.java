@@ -25,7 +25,7 @@ import com.google.android.gms.ads.RequestConfiguration;
 public class MainActivity extends Activity {
     private static final String TAG = "AEOTestAds";
     // Google's official test banner unit ID. Replace with the live unit only after test ads load.
-    private static final String TEST_BANNER_ID = "ca-app-pub-3940256099942544/6300978111";
+    private static final String LIVE_BANNER_ID = "ca-app-pub-3811857750727118/7710954032";
 
     private AdView topAdView;
     private AdView bottomAdView;
@@ -107,12 +107,12 @@ public class MainActivity extends Activity {
         w.addJavascriptInterface(new AdBridge(), "AndroidAds");
 
         topAdView = new AdView(this);
-        topAdView.setAdUnitId(TEST_BANNER_ID);
+        topAdView.setAdUnitId(LIVE_BANNER_ID);
         topAdView.setAdSize(AdSize.BANNER);
         topAdView.setAdListener(createAdListener("Top"));
 
         bottomAdView = new AdView(this);
-        bottomAdView.setAdUnitId(TEST_BANNER_ID);
+        bottomAdView.setAdUnitId(LIVE_BANNER_ID);
         bottomAdView.setAdSize(AdSize.BANNER);
         bottomAdView.setAdListener(createAdListener("Bottom"));
 
