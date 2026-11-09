@@ -964,6 +964,7 @@ function loginCloud(){
 function logoutCloud(){
  if(window.AndroidCloud) AndroidCloud.logout();
 }
+function onCloudSession(signedIn){ if(signedIn) cloudStatus('Teacher session restored — loading cloud data...'); }
 function onCloudLogin(ok,message){
  cloudStatus(message);
  if(ok) cloudStatus("Teacher connected — cloud data loading...");
@@ -1003,7 +1004,9 @@ function syncCloud(){
   }));
  }catch(e){ cloudStatus("Sync could not start"); }
 }
-\n/* INITIAL LOAD */
+\nif(window.AndroidCloud) AndroidCloud.checkSession();
+
+/* INITIAL LOAD */
 
 showStudents();
 
