@@ -1,0 +1,28 @@
+{
+  "project_info": {
+    "project_number": "646069699267",
+    "project_id": "aeo-test-online",
+    "storage_bucket": "aeo-test-online.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646069699267:android:86db91d4b1d36f08269876",
+        "android_client_info": {
+          "package_name": "com.aeotest.app"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyATePL3obEcuTOEU9CSefqFmTejy0dKVTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
