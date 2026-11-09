@@ -76,6 +76,26 @@ public class MainActivity extends Activity {
                 });
         }
 
+        @JavascriptInterface public void loadContent() {
+            if (auth == null || auth.getCurrentUser() == null || db == null) return;
+            db.collection("app_content").get()
+                .addOnSuccessListener(query -> {
+                    org.json.JSONArray docs = new org.json.JSONArray();
+                    try {
+                        for (com.google.firebase.firestore.QueryDocumentSnapshot doc : query) {
+                            JSONObject item = new JSONObject();
+                            item.put("id", doc.getId());
+                            item.put("data", new JSONObject(doc.getData()));
+                            docs.put(item);
+                        }
+                        js("onCloudContent(" + JSONObject.quote(docs.toString()) + ")");
+                    } catch (Exception e) {
+                        js("onCloudDataError('Could not parse online learning content')");
+                    }
+                })
+                .addOnFailureListener(e -> js("onCloudDataError(" + JSONObject.quote(e.getMessage()) + ")"));
+        }
+
         @JavascriptInterface public void loadData() {
             if (auth == null || auth.getCurrentUser() == null || db == null) {
                 js("onCloudDataError('Please login first')");
