@@ -125,8 +125,8 @@ public class MainActivity extends Activity {
             try {
                 JSONObject object = new JSONObject(json);
                 Map<String, Object> data = new HashMap<>();
-                data.put("students", object.optJSONObject("students") == null ? new JSONObject() : object.optJSONObject("students"));
-                data.put("assessmentHistory", object.optJSONArray("assessmentHistory") == null ? new org.json.JSONArray() : object.optJSONArray("assessmentHistory"));
+                data.put("students", object.optJSONObject("students") == null ? new HashMap<String, Object>() : object.optJSONObject("students").toMap());
+                data.put("assessmentHistory", object.optJSONArray("assessmentHistory") == null ? new java.util.ArrayList<Object>() : object.optJSONArray("assessmentHistory").toList());
                 data.put("updatedAt", System.currentTimeMillis());
                 db.collection("app_data").document("teacher_data").set(data, SetOptions.merge())
                     .addOnSuccessListener(v -> js("onCloudSync(true,'Cloud backup updated')"))
