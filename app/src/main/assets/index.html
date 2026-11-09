@@ -121,11 +121,14 @@ main{padding:17px 12px 30px}
 
  <div id="home">\n
   <div class="panel" id="cloudPanel">
-   <h2>☁️ Teacher Cloud Login</h2>
-   <p>Online backup ke liye apna Firebase Teacher email aur password enter karein. Offline app bhi login ke baghair chalti rahegi.</p>
-   <input id="cloudEmail" type="email" autocomplete="username" placeholder="Teacher email">
-   <input id="cloudPassword" type="password" autocomplete="current-password" placeholder="Password">
-   <button class="next" onclick="loginCloud()">Login & Sync</button>
+   <h2>☁️ Teacher / School Account</h2>
+   <p>Har teacher apna account banaye. Account ka data doosre teachers se alag aur private rahega. Offline app bhi chalti rahegi.</p>
+   <input id="cloudSchool" type="text" autocomplete="organization" placeholder="School name">
+   <input id="cloudTeacher" type="text" autocomplete="name" placeholder="Teacher name">
+   <input id="cloudEmail" type="email" autocomplete="username" placeholder="Email address">
+   <input id="cloudPassword" type="password" autocomplete="new-password" placeholder="Password (kam az kam 6 characters)">
+   <button class="next" onclick="registerCloud()">Create New Account</button>
+   <button class="back" onclick="loginCloud()">Already have account? Login</button>
    <button class="back" onclick="logoutCloud()">Logout</button>
    <p id="cloudStatus" class="small-text">Cloud: Not connected</p>
   </div>
@@ -955,6 +958,19 @@ function cloudStatus(message){
  const el=document.getElementById("cloudStatus");
  if(el) el.textContent="Cloud: "+message;
 }
+function registerCloud(){
+ const email=document.getElementById("cloudEmail").value.trim();
+ const password=document.getElementById("cloudPassword").value;
+ const school=document.getElementById("cloudSchool").value.trim();
+ const teacher=document.getElementById("cloudTeacher").value.trim();
+ if(!school || !teacher || !email || !password){ cloudStatus("School name, teacher name, email aur password likhein"); return; }
+ if(password.length<6){ cloudStatus("Password kam az kam 6 characters ka hona chahiye"); return; }
+ if(!window.AndroidCloud){ cloudStatus("Android cloud service unavailable"); return; }
+ localStorage.setItem("aeo_school_name",school);
+ localStorage.setItem("aeo_teacher_name",teacher);
+ cloudStatus("Account ban raha hai...");
+ AndroidCloud.register(email,password);
+}
 function loginCloud(){
  const email=document.getElementById("cloudEmail").value.trim();
  const password=document.getElementById("cloudPassword").value;
@@ -970,6 +986,13 @@ function onCloudSession(signedIn){ if(signedIn) cloudStatus('Teacher session res
 function onCloudLogin(ok,message){
  cloudStatus(message);
  if(ok) cloudStatus("Teacher connected — cloud data loading...");
+}
+function onCloudRegister(ok,message){
+ cloudStatus(message);
+ if(ok){
+  cloudStatus("Account created — saving your school data...");
+  syncCloud();
+ }
 }
 function onCloudLogout(){ cloudStatus("Logged out — offline mode active"); }
 function onCloudDataError(message){ cloudStatus("Sync error: "+message); }
@@ -1041,7 +1064,9 @@ function syncCloud(){
  try{
   AndroidCloud.syncData(JSON.stringify({
    students:students,
-   assessmentHistory:readHistory()
+   assessmentHistory:readHistory(),
+   schoolName:localStorage.getItem("aeo_school_name")||"",
+   teacherName:localStorage.getItem("aeo_teacher_name")||""
   }));
  }catch(e){ cloudStatus("Sync could not start"); }
 }
