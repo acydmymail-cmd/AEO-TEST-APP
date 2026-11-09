@@ -993,8 +993,47 @@ function onCloudData(jsonText){
   showStudents();
   cloudStatus("Connected — data merged and saved");
   syncCloud();
+  if(window.AndroidCloud) AndroidCloud.loadContent();
  }catch(e){ cloudStatus("Cloud data format error"); }
 }
+
+function mergeLearningData(target,source){
+ if(Array.isArray(source)){
+  const out=Array.isArray(target)?target.slice():[];
+  const seen=new Set(out.map(x=>JSON.stringify(x)));
+  source.forEach(x=>{const k=JSON.stringify(x);if(!seen.has(k)){seen.add(k);out.push(x);}});
+  return out;
+ }
+ if(source && typeof source==="object"){
+  const out=(target && typeof target==="object" && !Array.isArray(target))?{...target}:{};
+  Object.keys(source).forEach(k=>out[k]=mergeLearningData(out[k],source[k]));
+  return out;
+ }
+ return source;
+}
+function applyCloudLearningDocs(docs){
+ (docs||[]).slice().sort((a,b)=>String(a.id).localeCompare(String(b.id))).forEach(doc=>{
+  const d=doc.data||{};
+  if(d.active===false) return;
+  if(d.sloData) window.SLO_DATA=mergeLearningData(window.SLO_DATA||{},d.sloData);
+  if(d.questionsData) window.QUESTIONS_DATA=mergeLearningData(window.QUESTIONS_DATA||{},d.questionsData);
+ });
+}
+function applyCachedCloudContent(){
+ try{
+  const cached=JSON.parse(localStorage.getItem("aeo_cloud_content")||"[]");
+  applyCloudLearningDocs(cached);
+ }catch(e){}
+}
+function onCloudContent(jsonText){
+ try{
+  const docs=JSON.parse(jsonText||"[]");
+  localStorage.setItem("aeo_cloud_content",JSON.stringify(docs));
+  applyCloudLearningDocs(docs);
+  cloudStatus("Learning content updated — offline copy saved");
+ }catch(e){ cloudStatus("Online learning content format error"); }
+}
+
 function syncCloud(){
  if(!window.AndroidCloud) return;
  try{
@@ -1008,6 +1047,7 @@ function syncCloud(){
 
 /* INITIAL LOAD */
 
+applyCachedCloudContent();
 showStudents();
 
 </script>
