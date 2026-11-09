@@ -57,6 +57,11 @@ public class MainActivity extends Activity {
     }
 
     public class CloudBridge {
+        @JavascriptInterface public void checkSession() {
+            boolean signedIn = auth != null && auth.getCurrentUser() != null;
+            js("onCloudSession(" + signedIn + ")");
+            if (signedIn) loadData();
+        }
         @JavascriptInterface public void login(String email, String password) {
             if (auth == null) { js("onCloudLogin(false,'Firebase not initialized')"); return; }
             auth.signInWithEmailAndPassword(email.trim(), password)
