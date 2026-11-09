@@ -119,7 +119,17 @@ main{padding:17px 12px 30px}
 
 <main>
 
- <div id="home">
+ <div id="home">\n
+  <div class="panel" id="cloudPanel">
+   <h2>☁️ Teacher Cloud Login</h2>
+   <p>Online backup ke liye apna Firebase Teacher email aur password enter karein. Offline app bhi login ke baghair chalti rahegi.</p>
+   <input id="cloudEmail" type="email" autocomplete="username" placeholder="Teacher email">
+   <input id="cloudPassword" type="password" autocomplete="current-password" placeholder="Password">
+   <button class="next" onclick="loginCloud()">Login & Sync</button>
+   <button class="back" onclick="logoutCloud()">Logout</button>
+   <p id="cloudStatus" class="small-text">Cloud: Not connected</p>
+  </div>
+
 
   <h2>🎓 Apni Class Select Karein</h2>
 
@@ -733,11 +743,8 @@ function readHistory(){
 }
 
 function saveHistory(history){
-
- localStorage.setItem(
-  "aeo_assessment_history",
-  JSON.stringify(history)
- );
+ localStorage.setItem("aeo_assessment_history", JSON.stringify(history));
+ syncCloud();
 }
 
 function showAssessmentResult(){
@@ -749,7 +756,7 @@ function showAssessmentResult(){
 
  let record = {
 
-  studentId: assessmentStudent.id,
+  id: Date.now(),\n  studentId: assessmentStudent.id,
   studentName: assessmentStudent.name,
   class: document.getElementById("studentClass").value,
 
@@ -940,7 +947,63 @@ function escapeHTML(value){
  });
 }
 
-/* INITIAL LOAD */
+
+/* FIREBASE CLOUD BACKUP */
+function cloudStatus(message){
+ const el=document.getElementById("cloudStatus");
+ if(el) el.textContent="Cloud: "+message;
+}
+function loginCloud(){
+ const email=document.getElementById("cloudEmail").value.trim();
+ const password=document.getElementById("cloudPassword").value;
+ if(!email || !password){ cloudStatus("Email aur password likhein"); return; }
+ if(!window.AndroidCloud){ cloudStatus("Android cloud service unavailable"); return; }
+ cloudStatus("Connecting...");
+ AndroidCloud.login(email,password);
+}
+function logoutCloud(){
+ if(window.AndroidCloud) AndroidCloud.logout();
+}
+function onCloudLogin(ok,message){
+ cloudStatus(message);
+ if(ok) cloudStatus("Teacher connected — cloud data loading...");
+}
+function onCloudLogout(){ cloudStatus("Logged out — offline mode active"); }
+function onCloudDataError(message){ cloudStatus("Sync error: "+message); }
+function onCloudSync(ok,message){ cloudStatus(message); }
+function onCloudData(jsonText){
+ try{
+  const remote=JSON.parse(jsonText||"{}");
+  const remoteStudents=remote.students||{};
+  Object.keys(remoteStudents).forEach(cls=>{
+   if(!students[cls]) students[cls]=[];
+   const byId=new Map(students[cls].map(s=>[String(s.id),s]));
+   (remoteStudents[cls]||[]).forEach(s=>byId.set(String(s.id),s));
+   students[cls]=Array.from(byId.values()).slice(0,5);
+  });
+  const localHistory=readHistory();
+  const merged=new Map();
+  [...localHistory,...(remote.assessmentHistory||[])].forEach(r=>{
+   const key=String(r.id||[r.studentId,r.date,r.total,r.English,r.Urdu,r.Mathematics].join("_"));
+   merged.set(key,r);
+  });
+  localStorage.setItem("aeo_students",JSON.stringify(students));
+  localStorage.setItem("aeo_assessment_history",JSON.stringify(Array.from(merged.values())));
+  showStudents();
+  cloudStatus("Connected — data merged and saved");
+  syncCloud();
+ }catch(e){ cloudStatus("Cloud data format error"); }
+}
+function syncCloud(){
+ if(!window.AndroidCloud) return;
+ try{
+  AndroidCloud.syncData(JSON.stringify({
+   students:students,
+   assessmentHistory:readHistory()
+  }));
+ }catch(e){ cloudStatus("Sync could not start"); }
+}
+\n/* INITIAL LOAD */
 
 showStudents();
 
