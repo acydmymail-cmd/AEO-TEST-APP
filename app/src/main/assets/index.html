@@ -445,6 +445,7 @@ let students = readStudents();
 
 function saveStudents(){
  localStorage.setItem("aeo_students", JSON.stringify(students));
+ syncCloud();
 }
 
 function addStudent(){
@@ -756,7 +757,8 @@ function showAssessmentResult(){
 
  let record = {
 
-  id: Date.now(),\n  studentId: assessmentStudent.id,
+  id: Date.now(),
+  studentId: assessmentStudent.id,
   studentName: assessmentStudent.name,
   class: document.getElementById("studentClass").value,
 
