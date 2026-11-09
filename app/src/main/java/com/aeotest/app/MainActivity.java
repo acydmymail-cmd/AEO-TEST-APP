@@ -83,6 +83,20 @@ public class MainActivity extends Activity {
             js("onCloudSession(" + signedIn + ")");
             if (signedIn) loadData();
         }
+        @JavascriptInterface public void register(String email, String password) {
+            if (auth == null) { js("onCloudRegister(false,'Firebase not initialized')"); return; }
+            auth.createUserWithEmailAndPassword(email.trim(), password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        js("onCloudRegister(true,'Account created successfully')");
+                        loadData();
+                    } else {
+                        String message = task.getException() == null ? "Registration failed" : task.getException().getMessage();
+                        js("onCloudRegister(false," + JSONObject.quote(message) + ")");
+                    }
+                });
+        }
+
         @JavascriptInterface public void login(String email, String password) {
             if (auth == null) { js("onCloudLogin(false,'Firebase not initialized')"); return; }
             auth.signInWithEmailAndPassword(email.trim(), password)
@@ -122,7 +136,7 @@ public class MainActivity extends Activity {
                 js("onCloudDataError('Please login first')");
                 return;
             }
-            db.collection("app_data").document("teacher_data").get()
+            db.collection("app_data").document(auth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(snapshot -> {
                     if (snapshot.exists()) {
                         try {
@@ -148,8 +162,10 @@ public class MainActivity extends Activity {
                 Map<String, Object> data = new HashMap<>();
                 data.put("students", object.optJSONObject("students") == null ? new HashMap<String, Object>() : toFirestoreValue(object.optJSONObject("students")));
                 data.put("assessmentHistory", object.optJSONArray("assessmentHistory") == null ? new java.util.ArrayList<Object>() : toFirestoreValue(object.optJSONArray("assessmentHistory")));
+                data.put("schoolName", object.optString("schoolName", ""));
+                data.put("teacherName", object.optString("teacherName", ""));
                 data.put("updatedAt", System.currentTimeMillis());
-                db.collection("app_data").document("teacher_data").set(data, SetOptions.merge())
+                db.collection("app_data").document(auth.getCurrentUser().getUid()).set(data, SetOptions.merge())
                     .addOnSuccessListener(v -> js("onCloudSync(true,'Cloud backup updated')"))
                     .addOnFailureListener(e -> js("onCloudSync(false," + JSONObject.quote(e.getMessage()) + ")"));
             } catch (Exception e) {
