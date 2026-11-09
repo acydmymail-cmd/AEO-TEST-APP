@@ -41,6 +41,27 @@ public class MainActivity extends Activity {
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
+    private Object toFirestoreValue(Object value) throws org.json.JSONException {
+        if (value == JSONObject.NULL) return null;
+        if (value instanceof JSONObject) {
+            JSONObject object = (JSONObject) value;
+            Map<String, Object> map = new HashMap<>();
+            java.util.Iterator<String> keys = object.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                map.put(key, toFirestoreValue(object.get(key)));
+            }
+            return map;
+        }
+        if (value instanceof org.json.JSONArray) {
+            org.json.JSONArray array = (org.json.JSONArray) value;
+            java.util.List<Object> list = new java.util.ArrayList<>();
+            for (int i = 0; i < array.length(); i++) list.add(toFirestoreValue(array.get(i)));
+            return list;
+        }
+        return value;
+    }
+
     private void js(String script) {
         runOnUiThread(() -> {
             if (webView != null) webView.evaluateJavascript(script, null);
@@ -125,8 +146,8 @@ public class MainActivity extends Activity {
             try {
                 JSONObject object = new JSONObject(json);
                 Map<String, Object> data = new HashMap<>();
-                data.put("students", object.optJSONObject("students") == null ? new HashMap<String, Object>() : object.optJSONObject("students").toMap());
-                data.put("assessmentHistory", object.optJSONArray("assessmentHistory") == null ? new java.util.ArrayList<Object>() : object.optJSONArray("assessmentHistory").toList());
+                data.put("students", object.optJSONObject("students") == null ? new HashMap<String, Object>() : toFirestoreValue(object.optJSONObject("students")));
+                data.put("assessmentHistory", object.optJSONArray("assessmentHistory") == null ? new java.util.ArrayList<Object>() : toFirestoreValue(object.optJSONArray("assessmentHistory")));
                 data.put("updatedAt", System.currentTimeMillis());
                 db.collection("app_data").document("teacher_data").set(data, SetOptions.merge())
                     .addOnSuccessListener(v -> js("onCloudSync(true,'Cloud backup updated')"))
