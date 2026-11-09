@@ -1,7 +1,12 @@
-plugins { id 'com.android.application' }
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
 android {
     namespace 'com.aeotest.app'
     compileSdk 35
+
     defaultConfig {
         applicationId 'com.aeotest.app'
         minSdk 23
@@ -13,4 +18,8 @@ android {
 
 dependencies {
     implementation 'com.google.android.gms:play-services-ads:24.7.0'
+
+    implementation platform('com.google.firebase:firebase-bom:35.1.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
 }
